@@ -36,7 +36,7 @@ const Contact = () => {
     // Log the form data before sending
     const formElement = formRef.current as HTMLFormElement;
     console.log('Form data being sent:', {
-      name: formElement.name?.value,
+      name: formElement.name?.valueOf,
       email: formElement.email?.value,
       message: formElement.message?.value,
       formElements: Array.from(formElement.elements).map(el => ({ 

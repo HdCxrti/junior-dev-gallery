@@ -26,9 +26,8 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <a href="#" className="font-bold text-2xl text-portfolio-purple">Portfolio</a>
+      <div className="container mx-auto px-6 py-4 flex items-center justify-between">        {/* Logo */}
+        <a href="#" className="font-bold text-2xl text-portfolio-purple">Jacob Dutra</a>
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
@@ -40,9 +39,10 @@ const Navbar = () => {
             >
               {link.name}
             </a>
-          ))}
-          <Button className="bg-portfolio-purple hover:bg-portfolio-indigo">
-            Resume
+          ))}          <Button className="bg-portfolio-purple hover:bg-portfolio-indigo" asChild>
+            <a href="/resume/Jacob_Dutra_Resume.pdf" target="_blank" rel="noopener noreferrer">
+              Resume
+            </a>
           </Button>
         </div>
 
@@ -71,9 +71,10 @@ const Navbar = () => {
               >
                 {link.name}
               </a>
-            ))}
-            <Button className="bg-portfolio-purple hover:bg-portfolio-indigo w-full">
-              Resume
+            ))}            <Button className="bg-portfolio-purple hover:bg-portfolio-indigo w-full" asChild>
+              <a href="/resume/Jacob_Dutra_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                Resume
+              </a>
             </Button>
           </div>
         </div>

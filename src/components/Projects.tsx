@@ -2,23 +2,22 @@
 import ProjectCard from './ProjectCard';
 import { Badge } from '@/components/ui/badge';
 
-const Projects = () => {
-  const projects = [
+const Projects = () => {  const projects = [
     {
-      title: "E-commerce Website",
-      description: "A fully responsive e-commerce platform with product filtering, cart functionality, and checkout process.",
+      title: "Portfolio Website",
+      description: "A customized portfolio website to showcase my projects and skills, featuring a contact form with EmailJS integration.",
       imageSrc: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-      tags: ["React", "Node.js", "MongoDB", "Express"],
+      tags: ["React", "TypeScript", "Tailwind CSS", "EmailJS"],
       demoLink: "#",
-      codeLink: "#"
+      codeLink: "https://github.com/HdCxrti/portfolio"
     },
     {
-      title: "Task Management App",
-      description: "A Kanban-style task management application with drag-and-drop functionality and task filtering.",
-      imageSrc: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
-      tags: ["React", "Redux", "Firebase", "Tailwind CSS"],
+      title: "Recipe Finder App",
+      description: "A web application that allows users to search for recipes based on ingredients they have at home.",
+      imageSrc: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f",
+      tags: ["React", "JavaScript", "CSS", "Recipe API"],
       demoLink: "#",
-      codeLink: "#"
+      codeLink: "https://github.com/HdCxrti/recipe-finder"
     },
     {
       title: "Weather Dashboard",
@@ -26,7 +25,7 @@ const Projects = () => {
       imageSrc: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
       tags: ["HTML", "CSS", "JavaScript", "Weather API"],
       demoLink: "#",
-      codeLink: "#"
+      codeLink: "https://github.com/HdCxrti/weather-app"
     },
   ];
 

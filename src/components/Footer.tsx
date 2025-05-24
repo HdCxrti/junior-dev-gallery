@@ -14,30 +14,33 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-col items-center md:items-end">
-            <div className="flex gap-4 mb-4">
-              <a 
-                href="#" 
+            <div className="flex gap-4 mb-4">              <a 
+                href="https://www.linkedin.com/in/jacob-david-dutra/" 
                 className="bg-gray-100 p-2 rounded-md hover:bg-portfolio-purple/10 transition-colors"
                 aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Linkedin className="h-5 w-5 text-portfolio-purple" />
               </a>
               <a 
-                href="#" 
+                href="https://github.com/HdCxrti" 
                 className="bg-gray-100 p-2 rounded-md hover:bg-portfolio-purple/10 transition-colors"
                 aria-label="GitHub"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Github className="h-5 w-5 text-portfolio-purple" />
               </a>
               <a 
-                href="mailto:john.doe@example.com" 
+                href="mailto:jacobdaviddutra@gmail.com" 
                 className="bg-gray-100 p-2 rounded-md hover:bg-portfolio-purple/10 transition-colors"
                 aria-label="Email"
               >
                 <Mail className="h-5 w-5 text-portfolio-purple" />
               </a>
             </div>
-            <p className="text-gray-600 text-sm">© {currentYear} John Doe. All rights reserved.</p>
+            <p className="text-gray-600 text-sm">© {currentYear} Jacob Dutra. All rights reserved.</p>
           </div>
         </div>
       </div>

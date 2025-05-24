@@ -50,10 +50,9 @@ const Hero = () => {
             style={{ animationDelay: "0.5s" }}
           >
             <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-portfolio-blue to-portfolio-purple flex items-center justify-center">
-              <div className="w-60 h-60 md:w-76 md:h-76 rounded-full bg-white flex items-center justify-center overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
-                  alt="Developer"
+              <div className="w-60 h-60 md:w-76 md:h-76 rounded-full bg-white flex items-center justify-center overflow-hidden">                <img
+                  src="https://images.unsplash.com/photo-1633332755192-727a05c4013d"
+                  alt="Jacob Dutra"
                   className="w-full h-full object-cover"
                 />
               </div>
