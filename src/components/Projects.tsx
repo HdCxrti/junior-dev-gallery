@@ -28,14 +28,13 @@ const Projects = () => {  const projects = [
       codeLink: "https://github.com/HdCxrti/weather-app"
     },
   ];
-
   return (
-    <section id="projects" className="py-20 bg-gray-50">
+    <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <Badge className="bg-portfolio-purple/10 text-portfolio-purple border-portfolio-purple/20 mb-4">Portfolio</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">My Recent Projects</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <Badge className="bg-portfolio-purple/10 text-portfolio-purple border-portfolio-purple/20 mb-4 dark:bg-portfolio-purple/20">Portfolio</Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white">My Recent Projects</h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Here are some of my recent projects showcasing my skills and experience. Feel free to check out the code and live demos.
           </p>
         </div>

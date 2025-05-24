@@ -1,9 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 
-const Hero = () => {
-  return (
-    <section className="min-h-screen flex items-center justify-center pt-24 pb-16 px-4 bg-gradient-to-br from-white to-gray-50">
+const Hero = () => {  return (
+    <section className="min-h-screen flex items-center justify-center pt-24 pb-16 px-4 bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto">
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10">
           <div
@@ -13,11 +12,11 @@ const Hero = () => {
             <h2 className="text-lg font-medium text-portfolio-purple mb-2">
               Hello, I'm
             </h2>
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">Jacob Dutra</h1>
-            <h3 className="text-2xl md:text-3xl font-medium text-gray-700 mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 dark:text-white">Jacob Dutra</h1>
+            <h3 className="text-2xl md:text-3xl font-medium text-gray-700 dark:text-gray-300 mb-6">
               Mechanic Turned Full Stack Developer
             </h3>
-            <p className="text-lg text-gray-600 mb-8 max-w-lg">
+            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg">
               Aspiring full stack developer with a hands-on approach a common
               sense mindset and a background in the automotive industry. Known
               for a strong work ethic and a get-it-done attitude. I'm all about
@@ -49,10 +48,9 @@ const Hero = () => {
             className="w-full md:w-1/2 flex justify-center animate-fade-in"
             style={{ animationDelay: "0.5s" }}
           >
-            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-portfolio-blue to-portfolio-purple flex items-center justify-center">
-              <div className="w-60 h-60 md:w-76 md:h-76 rounded-full bg-white flex items-center justify-center overflow-hidden">                <img
-                  src="https://images.unsplash.com/photo-1633332755192-727a05c4013d"
-                  alt="Jacob Dutra"
+            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-portfolio-blue to-portfolio-purple flex items-center justify-center">              <div className="w-60 h-60 md:w-76 md:h-76 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center overflow-hidden">                <img
+                  src="/images/coding-desktop.jpg.png"
+                  alt="Jacob Dutra - Coding setup"
                   className="w-full h-full object-cover"
                 />
               </div>

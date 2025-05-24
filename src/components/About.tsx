@@ -16,13 +16,13 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <Badge className="bg-portfolio-purple/10 text-portfolio-purple border-portfolio-purple/20 mb-4">
+          <Badge className="bg-portfolio-purple/10 text-portfolio-purple border-portfolio-purple/20 mb-4 dark:bg-portfolio-purple/20">
             About Me
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white">
             My Journey & Skills
           </h2>
         </div>
@@ -32,16 +32,16 @@ const About = () => {
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-md bg-gradient-to-br from-portfolio-blue to-portfolio-purple absolute -top-4 -left-4 z-0"></div>
               <img
-                src="https://images.unsplash.com/photo-1633332755192-727a05c4013d"
-                alt="Jacob Dutra portrait"
-                className="w-64 h-64 md:w-80 md:h-80 rounded-md object-cover relative z-10"
+                src="/images/laptop-tools.jpg.png"
+                alt="Jacob Dutra - Coding with tools"
+                className="w-64 h-64 md:w-80 md:h-80 rounded-md object-cover object-center relative z-10"
               />
             </div>
           </div>
 
           <div className="w-full md:w-1/2">
-            <h3 className="text-2xl font-bold mb-4">Hello! I'm Jacob Dutra</h3>
-            <p className="text-gray-600 mb-8">
+            <h3 className="text-2xl font-bold mb-4 dark:text-white">Hello! I'm Jacob Dutra</h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-8">
               Hey there, I'm someone who likes to keep things simple and get
               things done. I'm all about learning what I need, building what I
               want, and fixing what's broken. I've got a background in the
@@ -53,12 +53,12 @@ const About = () => {
             </p>
 
             <div className="mb-8">
-              <h4 className="font-bold text-lg mb-4">My Skills:</h4>
+              <h4 className="font-bold text-lg mb-4 dark:text-white">My Skills:</h4>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill, index) => (
                   <Badge
                     key={index}
-                    className="bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    className="bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
                   >
                     {skill}
                   </Badge>
@@ -78,7 +78,7 @@ const About = () => {
               </Button>
               <Button
                 variant="outline"
-                className="border-portfolio-purple text-portfolio-purple hover:bg-portfolio-purple/10 flex items-center gap-2"
+                className="border-portfolio-purple text-portfolio-purple hover:bg-portfolio-purple/10 dark:border-portfolio-purple/70 dark:text-portfolio-purple/90 flex items-center gap-2"
                 asChild
               >
                 <a

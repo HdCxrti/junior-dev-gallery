@@ -15,8 +15,7 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ title, description, imageSrc, tags, demoLink, codeLink, index }: ProjectCardProps) => {
-  return (
-    <Card className="overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 animate-fade-in" style={{ animationDelay: `${0.2 * (index + 1)}s` }}>
+  return (    <Card className="overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 animate-fade-in dark:bg-gray-900 dark:border-gray-700" style={{ animationDelay: `${0.2 * (index + 1)}s` }}>
       <div className="h-56 overflow-hidden">
         <img 
           src={imageSrc} 
@@ -25,17 +24,17 @@ const ProjectCard = ({ title, description, imageSrc, tags, demoLink, codeLink, i
         />
       </div>
       <CardHeader>
-        <CardTitle className="text-xl">{title}</CardTitle>
+        <CardTitle className="text-xl dark:text-white">{title}</CardTitle>
         <div className="flex flex-wrap gap-2 mt-2">
           {tags.map((tag, i) => (
-            <Badge key={i} variant="outline" className="bg-portfolio-purple/10 text-portfolio-purple border-portfolio-purple/20">
+            <Badge key={i} variant="outline" className="bg-portfolio-purple/10 text-portfolio-purple border-portfolio-purple/20 dark:bg-portfolio-purple/20">
               {tag}
             </Badge>
           ))}
         </div>
       </CardHeader>
       <CardContent>
-        <CardDescription className="text-gray-600">
+        <CardDescription className="text-gray-600 dark:text-gray-400">
           {description}
         </CardDescription>
       </CardContent>
