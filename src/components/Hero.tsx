@@ -47,8 +47,7 @@ const Hero = () => {  return (
           <div
             className="w-full md:w-1/2 flex justify-center animate-fade-in"
             style={{ animationDelay: "0.5s" }}
-          >            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-portfolio-blue to-portfolio-purple flex items-center justify-center">
-              <div className="w-60 h-60 md:w-76 md:h-76 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center overflow-hidden">
+          >            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-portfolio-blue to-portfolio-purple flex items-center justify-center">              <div className="w-60 h-60 md:w-76 md:h-76 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center overflow-hidden shadow-md">
                 <img
                   src="/images/coding-desktop.jpg.png"
                   alt="Jacob Dutra - Coding setup"
