@@ -56,15 +56,13 @@ const Hero = () => {  return (
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="flex justify-center mt-16">
+        </div>        <div className="flex justify-center mt-16">
           <a
             href="#projects"
-            className="flex flex-col items-center text-portfolio-purple hover:text-portfolio-indigo transition-colors"
+            className="flex flex-col items-center text-portfolio-purple hover:text-portfolio-indigo transition-colors group"
           >
-            <span className="mb-2 text-sm">Scroll Down</span>
-            <ArrowDown className="animate-bounce" />
+            <span className="mb-2 text-sm font-medium group-hover:underline">Scroll Down</span>
+            <ArrowDown className="animate-bounce h-5 w-5" />
           </a>
         </div>
       </div>
