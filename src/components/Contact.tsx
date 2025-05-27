@@ -51,18 +51,14 @@ const Contact = () => {
     
     // Try with explicit public key
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '0911nTIj_nbg-aH7i';
-    console.log('Using public key:', publicKey);
-      // Send with parameters that match the template variables
+    console.log('Using public key:', publicKey);    // Send with parameters that match the template variables
     emailjs.send(
       serviceId,
       templateId,
       {
         name: formData.name,                    // Match {{name}} in template
         email: formData.email,                  // Match {{email}} in template
-        company: formData.company || "N/A",     // Match {{company}} in template
-        subject: formData.subject || "Contact Form Submission",  // Match {{subject}} in template
-        message: formData.message,              // Match {{message}} in template
-        opportunity_type: formData.opportunity, // Match {{opportunity_type}} in template
+        message: `Company: ${formData.company || "N/A"}\nSubject: ${formData.subject || "General Inquiry"}\nInquiry Type: ${formData.opportunity}\n\n${formData.message}`, // Include all data in the message
         reply_to: formData.email
       },
       publicKey

@@ -16,13 +16,33 @@ const WorkExperience = () => {  const experiences: ExperienceItem[] = [
       period: "2023 - 2025",
       description: "Diagnosed and resolved complex mechanical and electrical issues using systematic troubleshooting approaches. Developed practical problem-solving skills and attention to detail that translate directly to software development. Expert in systematic debugging and finding efficient solutions under pressure.",
       skills: ["Problem Solving", "Diagnostics", "Client Communication", "Technical Documentation", "Attention to Detail"]
+    },
+    {
+      title: "Associate",
+      company: "Walmart",
+      period: "2021 - 2023",
+      description: "Handled multiple responsibilities including inventory management, customer service, and sales floor operations. Developed strong interpersonal skills and ability to work efficiently in fast-paced environments. Collaborated with team members to ensure excellent customer experiences.",
+      skills: ["Team Collaboration", "Customer Service", "Inventory Management", "Problem Resolution"]
+    },
+    {
+      title: "Landscaper",
+      company: "Local Landscaping Business",
+      period: "2019 - 2021",
+      description: "Maintained residential and commercial properties with attention to detail and quality. Managed project timelines and coordinated with team members to ensure client satisfaction. Developed strong work ethic and ability to perform under various weather conditions.",
+      skills: ["Physical Endurance", "Time Management", "Team Coordination", "Client Relations"]
+    },
+    {
+      title: "Team Member",
+      company: "Domino's Pizza",
+      period: "Started at age 14 (while in school)",
+      description: "Started working at a young age while balancing school responsibilities. Learned fundamentals of customer service, time management, and working in a team environment. This early work experience built a foundation for strong work ethic and responsibility.",
+      skills: ["Time Management", "Customer Service", "Multitasking", "Responsibility"]
     }
   ];
 
   return (
     <section className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+      <div className="container mx-auto px-4">        <div className="text-center mb-16">
           <Badge className="bg-portfolio-purple/10 text-portfolio-purple border-portfolio-purple/20 mb-4 dark:bg-portfolio-purple/20">
             Experience
           </Badge>
@@ -30,7 +50,7 @@ const WorkExperience = () => {  const experiences: ExperienceItem[] = [
             Work History
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            My professional journey and how it's shaped my development skills.
+            My professional journey starting from age 14, showing my long-term commitment to hard work and continuous growth.
           </p>
         </div>
 
