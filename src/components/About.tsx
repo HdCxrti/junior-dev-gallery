@@ -46,17 +46,17 @@ const About = () => {
           <div className="w-full md:w-1/2">
             <h3 className="text-2xl font-bold mb-4 dark:text-white">
               Hello! I'm Jacob Dutra
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-8">
+            </h3>            <p className="text-gray-600 dark:text-gray-400 mb-8">
               Hey there, I'm someone who likes to keep things simple and get
               things done. I'm all about learning what I need, building what I
-              want, and fixing what's broken. I've got a background in the
-              automotive industry, so I come from a hands-on, problem-solving
-              world. Now I'm bringing that same energy into web development,
-              building clean, functional apps and figuring things out as I go.
-              I'm not afraid to troubleshoot, dig into new tech, and keep things
-              practical. If it makes sense and it works, I'm in.
-            </p>            <div className="mb-8">
+              want, and fixing what's broken. After working as an automotive technician 
+              at Massey Hyundai until early 2025, I made the decision to fully commit 
+              to my passion for coding and web development. Since then, I've been intensively
+              studying and building projects to prepare for my career transition.
+              With my background in hands-on mechanical troubleshooting, I bring unique
+              problem-solving skills to software development. I'm not afraid to dig into new tech, 
+              debug complex issues, and create practical solutions that just work.
+            </p><div className="mb-8">
               <h4 className="font-bold text-lg mb-4 dark:text-white">
                 My Skills:
               </h4>

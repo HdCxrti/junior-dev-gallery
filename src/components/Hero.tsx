@@ -50,10 +50,9 @@ const Hero = () => {  return (
                   Download Resume
                 </a>
               </Button>
-            </div>
-            <div className="mt-8 bg-portfolio-purple/5 border border-portfolio-purple/10 rounded-lg p-4 dark:bg-gray-800/50 dark:border-portfolio-purple/20">
+            </div>            <div className="mt-8 bg-portfolio-purple/5 border border-portfolio-purple/10 rounded-lg p-4 dark:bg-gray-800/50 dark:border-portfolio-purple/20">
               <p className="text-sm text-gray-700 dark:text-gray-300">
-                <span className="font-bold">🚀 Open to Work:</span> I'm currently seeking full-time software development opportunities where I can apply my hands-on problem-solving approach to build great products. Let's connect!
+                <span className="font-bold">🚀 Open to Work:</span> After transitioning from my automotive career and dedicating myself to learning web development full-time in 2025, I'm actively seeking software development opportunities. Ready to bring my technical problem-solving skills and fresh coding knowledge to your team!
               </p>
             </div>
           </div>

@@ -11,18 +11,11 @@ interface ExperienceItem {
 
 const WorkExperience = () => {  const experiences: ExperienceItem[] = [
     {
-      title: "Junior Web Developer",
-      company: "Current Company",
-      period: "January 2025 - Present",
-      description: "Developing responsive web applications using modern JavaScript frameworks and React. Collaborating with senior developers on feature implementation and bug fixes. Participating in code reviews and agile development processes.",
-      skills: ["React", "JavaScript", "TypeScript", "Node.js", "Tailwind CSS"]
-    },
-    {
       title: "Automotive Technician",
       company: "Massey Hyundai",
       period: "2023 - 2025",
-      description: "Diagnosed and resolved complex mechanical and electrical issues using systematic troubleshooting approaches. Developed practical problem-solving skills and attention to detail that translate directly to software development.",
-      skills: ["Problem Solving", "Diagnostics", "Client Communication"]
+      description: "Diagnosed and resolved complex mechanical and electrical issues using systematic troubleshooting approaches. Developed practical problem-solving skills and attention to detail that translate directly to software development. Expert in systematic debugging and finding efficient solutions under pressure.",
+      skills: ["Problem Solving", "Diagnostics", "Client Communication", "Technical Documentation", "Attention to Detail"]
     }
   ];
 

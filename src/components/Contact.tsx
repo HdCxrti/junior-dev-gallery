@@ -52,26 +52,34 @@ const Contact = () => {
     // Try with explicit public key
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '0911nTIj_nbg-aH7i';
     console.log('Using public key:', publicKey);
-    
-    // Send with parameters that match the template variables
+      // Send with parameters that match the template variables
     emailjs.send(
       serviceId,
       templateId,
       {
-        name: formData.name,        // Match {{name}} in template
-        email: formData.email,      // Match {{email}} in template
-        message: formData.message,  // Match {{message}} in template
+        name: formData.name,                    // Match {{name}} in template
+        email: formData.email,                  // Match {{email}} in template
+        company: formData.company || "N/A",     // Match {{company}} in template
+        subject: formData.subject || "Contact Form Submission",  // Match {{subject}} in template
+        message: formData.message,              // Match {{message}} in template
+        opportunity_type: formData.opportunity, // Match {{opportunity_type}} in template
         reply_to: formData.email
       },
       publicKey
     )
-      .then((result) => {
-        console.log('Email success:', result.text);
+      .then((result) => {        console.log('Email success:', result.text);
         toast({
           title: "Message sent!",
           description: "Thanks for reaching out. I'll get back to you soon.",
         });
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          subject: '',
+          opportunity: 'general',
+          message: ''
+        });
         setIsSubmitting(false);
       })
       .catch(error => {
@@ -150,10 +158,9 @@ const Contact = () => {
             </div>
           </div>          <div className="w-full lg:w-2/3">
             <form ref={formRef} onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 dark:border dark:border-gray-700 p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold mb-6 dark:text-white">Send me a message</h3>
-                <div className="mb-6 bg-portfolio-purple/5 border border-portfolio-purple/20 p-4 rounded-lg dark:bg-gray-800/50">
+              <h3 className="text-2xl font-bold mb-6 dark:text-white">Send me a message</h3>                <div className="mb-6 bg-portfolio-purple/5 border border-portfolio-purple/20 p-4 rounded-lg dark:bg-gray-800/50">
                 <h4 className="text-sm font-semibold text-portfolio-purple mb-2">🚀 Open to Work!</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">I'm currently seeking full-time software development roles. If you're a recruiter or hiring manager, please select "Job Opportunity" below.</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">After leaving Massey Hyundai in early 2025, I've dedicated myself to learning web development full-time. I'm now actively seeking entry-level software development opportunities where I can contribute my mechanical troubleshooting background and newly acquired coding skills. If you're a recruiter or hiring manager, please select "Job Opportunity" below.</p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
