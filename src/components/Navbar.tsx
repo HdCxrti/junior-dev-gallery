@@ -27,7 +27,7 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">        {/* Logo */}
-        <a href="#" className="font-bold text-2xl text-portfolio-purple dark:text-portfolio-purple">Jacob Dutra</a>
+        <a href="#" className="font-bold text-2xl text-portfolio-purple dark:text-portfolio-purple">Portfolio</a>
           {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
