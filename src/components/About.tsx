@@ -1,18 +1,20 @@
 import { ArrowRight, Code, FileText, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import SkillBar from "./SkillBar";
+import GitHubStats from "./GitHubStats";
 
 const About = () => {
   const skills = [
-    "HTML/CSS",
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Tailwind CSS",
-    "Node.js",
-    "Express",
-    "Git",
+    { name: "HTML/CSS", level: 90 },
+    { name: "JavaScript", level: 85 },
+    { name: "TypeScript", level: 80 },
+    { name: "React", level: 85 },
+    { name: "Next.js", level: 75 },
+    { name: "Tailwind CSS", level: 90 },
+    { name: "Node.js", level: 80 },
+    { name: "Express", level: 75 },
+    { name: "Git", level: 85 },
   ];
 
   return (
@@ -54,20 +56,13 @@ const About = () => {
               building clean, functional apps and figuring things out as I go.
               I'm not afraid to troubleshoot, dig into new tech, and keep things
               practical. If it makes sense and it works, I'm in.
-            </p>
-
-            <div className="mb-8">
+            </p>            <div className="mb-8">
               <h4 className="font-bold text-lg mb-4 dark:text-white">
                 My Skills:
               </h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
                 {skills.map((skill, index) => (
-                  <Badge
-                    key={index}
-                    className="bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
-                  >
-                    {skill}
-                  </Badge>
+                  <SkillBar key={index} skill={skill.name} percentage={skill.level} />
                 ))}
               </div>
             </div>
@@ -98,9 +93,13 @@ const About = () => {
                   <Github className="h-4 w-4" />
                   Visit GitHub
                 </a>
-              </Button>
-            </div>
+              </Button>            </div>
           </div>
+        </div>
+        
+        {/* GitHub Stats */}
+        <div className="mt-20">
+          <GitHubStats />
         </div>
       </div>
     </section>

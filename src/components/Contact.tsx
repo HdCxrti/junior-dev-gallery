@@ -9,10 +9,12 @@ import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { toast } = useToast();
-  const formRef = useRef<HTMLFormElement>(null);
-  const [formData, setFormData] = useState({
+  const formRef = useRef<HTMLFormElement>(null);  const [formData, setFormData] = useState({
     name: '',
     email: '',
+    company: '',
+    subject: '',
+    opportunity: 'general',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -149,7 +151,11 @@ const Contact = () => {
           </div>          <div className="w-full lg:w-2/3">
             <form ref={formRef} onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 dark:border dark:border-gray-700 p-8 rounded-lg shadow-md">
               <h3 className="text-2xl font-bold mb-6 dark:text-white">Send me a message</h3>
-              
+                <div className="mb-6 bg-portfolio-purple/5 border border-portfolio-purple/20 p-4 rounded-lg dark:bg-gray-800/50">
+                <h4 className="text-sm font-semibold text-portfolio-purple mb-2">🚀 Open to Work!</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-300">I'm currently seeking full-time software development roles. If you're a recruiter or hiring manager, please select "Job Opportunity" below.</p>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
@@ -176,14 +182,60 @@ const Contact = () => {
                     required
                   />
                 </div>
-              </div>              <div className="mb-6">
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label htmlFor="company" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Company (Optional)</label>
+                  <Input 
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    placeholder="Your company name"
+                    className="dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+                  <Input 
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    placeholder="Message subject"
+                    className="dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+                  />
+                </div>
+              </div>
+              
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message Type</label>
+                <div className="flex flex-wrap gap-3">
+                  {['general', 'job opportunity', 'project collaboration', 'question'].map(type => (
+                    <div 
+                      key={type}
+                      onClick={() => setFormData(prev => ({ ...prev, opportunity: type }))}
+                      className={`px-4 py-2 rounded-full text-sm cursor-pointer transition-all ${
+                        formData.opportunity === type 
+                          ? 'bg-portfolio-purple text-white' 
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
+                      }`}
+                    >
+                      {type.charAt(0).toUpperCase() + type.slice(1)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="mb-6">
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
                 <Textarea 
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Your message here..."
+                  placeholder={formData.opportunity === 'job opportunity' ? "Please describe the position, requirements, and how my skills match what you're looking for..." : "Your message here..."}
                   className="min-h-[150px] dark:bg-gray-800 dark:border-gray-600 dark:text-white"
                   required
                 />

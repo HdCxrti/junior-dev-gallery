@@ -1,8 +1,16 @@
 
+import { useState, useEffect } from 'react';
 import ProjectCard from './ProjectCard';
 import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Search, Filter } from 'lucide-react';
 
-const Projects = () => {  const projects = [
+const Projects = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [activeFilter, setActiveFilter] = useState('All');
+  const [filteredProjects, setFilteredProjects] = useState([]);
+  
+  const projects = [
     {
       title: "Portfolio Website",
       description: "A customized portfolio website to showcase my projects and skills, featuring a contact form with EmailJS integration.",
@@ -26,21 +34,70 @@ const Projects = () => {  const projects = [
       tags: ["HTML", "CSS", "JavaScript", "Weather API"],
       demoLink: "#",
       codeLink: "https://github.com/HdCxrti/weather-app"
-    },
-  ];
+    },  ];
+
+  // Extract all unique tags from all projects for our filter options
+  const allTags = ['All', ...new Set(projects.flatMap(project => project.tags))];
+
+  // Filter projects based on search term and active filter
+  useEffect(() => {
+    const filtered = projects.filter(project => {
+      const matchesSearch = searchTerm === '' || 
+        project.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+        project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        project.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+      
+      const matchesFilter = activeFilter === 'All' || project.tags.includes(activeFilter);
+      
+      return matchesSearch && matchesFilter;
+    });
+    
+    setFilteredProjects(filtered);
+  }, [searchTerm, activeFilter]);
+
   return (
     <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <Badge className="bg-portfolio-purple/10 text-portfolio-purple border-portfolio-purple/20 mb-4 dark:bg-portfolio-purple/20">Portfolio</Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white">My Recent Projects</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
             Here are some of my recent projects showcasing my skills and experience. Feel free to check out the code and live demos.
           </p>
+          
+          {/* Search and Filter */}
+          <div className="flex flex-col md:flex-row justify-center gap-4 mb-8">
+            <div className="relative max-w-md mx-auto md:mx-0">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Input 
+                type="text" 
+                placeholder="Search projects..." 
+                className="pl-10 border-portfolio-purple/20 focus:border-portfolio-purple dark:bg-gray-700"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+            
+            <div className="flex flex-wrap justify-center gap-2">
+              {allTags.map((tag) => (
+                <Badge 
+                  key={tag}
+                  className={`cursor-pointer ${
+                    activeFilter === tag 
+                      ? 'bg-portfolio-purple text-white' 
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300'
+                  }`}
+                  onClick={() => setActiveFilter(tag)}
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {filteredProjects.length > 0 ? filteredProjects.map((project, index) => (
             <ProjectCard 
               key={index}
               title={project.title}
@@ -51,7 +108,11 @@ const Projects = () => {  const projects = [
               codeLink={project.codeLink}
               index={index}
             />
-          ))}
+          )) : (
+            <div className="col-span-3 text-center py-20">
+              <p className="text-gray-500 dark:text-gray-400">No projects match your search criteria. Try a different search term or filter.</p>
+            </div>
+          )}
         </div>
       </div>
     </section>

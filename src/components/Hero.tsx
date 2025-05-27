@@ -24,8 +24,7 @@ const Hero = () => {  return (
               everything I can. Frontend backend APIs you name it. I enjoy
               solving problems digging into bugs and making things work the
               right way. Always learning always troubleshooting always building.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            </p>            <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 className="bg-portfolio-purple hover:bg-portfolio-indigo text-white px-8 py-6 rounded-md"
                 size="lg"
@@ -41,6 +40,21 @@ const Hero = () => {  return (
               >
                 <a href="#contact">Contact Me</a>
               </Button>
+              <Button
+                variant="outline"
+                className="border-portfolio-purple text-portfolio-purple hover:bg-portfolio-purple/10 px-8 py-6 rounded-md"
+                size="lg"
+                asChild
+              >
+                <a href="/resume/Jake_Dutra_Software_Developer_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                  Download Resume
+                </a>
+              </Button>
+            </div>
+            <div className="mt-8 bg-portfolio-purple/5 border border-portfolio-purple/10 rounded-lg p-4 dark:bg-gray-800/50 dark:border-portfolio-purple/20">
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <span className="font-bold">🚀 Open to Work:</span> I'm currently seeking full-time software development opportunities where I can apply my hands-on problem-solving approach to build great products. Let's connect!
+              </p>
             </div>
           </div>
 
