@@ -38,10 +38,9 @@ const Navbar = () => {
             >
               {link.name}
             </a>
-          ))}          
-          <ThemeToggle />
+          ))}            <ThemeToggle />
           <Button className="bg-portfolio-purple hover:bg-portfolio-indigo" asChild>
-            <a href="/resume/Jacob_Dutra_Resume.pdf" target="_blank" rel="noopener noreferrer">
+            <a href="/resume/Jake_Dutra_Software_Developer_Resume.pdf" target="_blank" rel="noopener noreferrer">
               Resume
             </a>
           </Button>
@@ -70,13 +69,12 @@ const Navbar = () => {
               >
                 {link.name}
               </a>
-            ))}
-            <div className="flex items-center py-2">
+            ))}            <div className="flex items-center py-2">
               <span className="text-gray-700 dark:text-gray-200 mr-4">Theme:</span>
               <ThemeToggle />
             </div>
             <Button className="bg-portfolio-purple hover:bg-portfolio-indigo w-full" asChild>
-              <a href="/resume/Jacob_Dutra_Resume.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="/resume/Jake_Dutra_Software_Developer_Resume.pdf" target="_blank" rel="noopener noreferrer">
                 Resume
               </a>
             </Button>

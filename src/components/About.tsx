@@ -6,13 +6,13 @@ const About = () => {
   const skills = [
     "HTML/CSS",
     "JavaScript",
-    "TypeScript", 
+    "TypeScript",
     "React",
     "Next.js",
     "Tailwind CSS",
     "Node.js",
     "Express",
-    "Git"
+    "Git",
   ];
 
   return (
@@ -34,26 +34,33 @@ const About = () => {
               <img
                 src="/images/laptop-tools.jpg.png"
                 alt="Jacob Dutra - Coding with tools"
-                className="w-64 h-64 md:w-80 md:h-80 rounded-md object-cover object-center relative z-10"
+                className="w-64 h-64 md:w-80 md:h-80 rounded-md object-cover object-center relative z-10 shadow-lg"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
 
           <div className="w-full md:w-1/2">
-            <h3 className="text-2xl font-bold mb-4 dark:text-white">Hello! I'm Jacob Dutra</h3>
+            <h3 className="text-2xl font-bold mb-4 dark:text-white">
+              Hello! I'm Jacob Dutra
+            </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-8">
-              Hey there, I'm someone who likes to keep things simple and get
-              things done. I'm all about learning what I need, building what I
-              want, and fixing what's broken. I've got a background in the
-              automotive industry, so I come from a hands-on, problem-solving
-              world. Now I'm bringing that same energy into web development,
-              building clean, functional apps and figuring things out as I go.
-              I'm not afraid to troubleshoot, dig into new tech, and keep things
-              practical. If it makes sense and it works, I'm in.
+              I’ve been working since I was 14, balancing jobs and school, and
+              learning through real hands-on experience. Over time I built a
+              strong work ethic and a natural instinct for troubleshooting which
+              led me to software development. I’ve been diving into every
+              language I can get my hands on and building full-stack projects
+              that help me understand how everything connects. I’m learning how
+              to work with APIs, databases, and frontends, and I approach coding
+              the same way I’ve approached every job I’ve had: jump in, figure
+              it out, and keep getting better.
             </p>
 
             <div className="mb-8">
-              <h4 className="font-bold text-lg mb-4 dark:text-white">My Skills:</h4>
+              <h4 className="font-bold text-lg mb-4 dark:text-white">
+                My Skills:
+              </h4>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill, index) => (
                   <Badge
@@ -71,7 +78,10 @@ const About = () => {
                 className="bg-portfolio-purple hover:bg-portfolio-indigo flex items-center gap-2"
                 asChild
               >
-                <a href="/resume/Jacob_Dutra_Resume.pdf" download>
+                <a
+                  href="/resume/Jake_Dutra_Software_Developer_Resume.pdf"
+                  download
+                >
                   <FileText className="h-4 w-4" />
                   Download Resume
                 </a>
