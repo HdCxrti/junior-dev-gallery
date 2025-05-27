@@ -16,13 +16,12 @@ const WorkExperience = () => {  const experiences: ExperienceItem[] = [
       period: "2023 - 2025",
       description: "Diagnosed and resolved complex mechanical and electrical issues using systematic troubleshooting approaches. Developed practical problem-solving skills and attention to detail that translate directly to software development. Expert in systematic debugging and finding efficient solutions under pressure.",
       skills: ["Problem Solving", "Diagnostics", "Client Communication", "Technical Documentation", "Attention to Detail"]
-    },
-    {
-      title: "Associate",
-      company: "Walmart",
+    },    {
+      title: "OGP Associate",
+      company: "Walmart - Online Grocery Pickup",
       period: "2021 - 2023",
-      description: "Handled multiple responsibilities including inventory management, customer service, and sales floor operations. Developed strong interpersonal skills and ability to work efficiently in fast-paced environments. Collaborated with team members to ensure excellent customer experiences.",
-      skills: ["Team Collaboration", "Customer Service", "Inventory Management", "Problem Resolution"]
+      description: "Fulfilled online grocery orders by accurately picking items from store shelves under strict time constraints. Maintained high standards for quality control and food safety while packing and staging orders. Provided direct customer service during order pickup, ensuring a smooth handoff process and resolving any issues on the spot. Developed strong attention to detail and ability to work efficiently in a fast-paced environment with constantly changing priorities.",
+      skills: ["Order Fulfillment", "Time Management", "Customer Service", "Inventory Management", "Quality Control", "Problem Resolution"]
     },
     {
       title: "Landscaper",
