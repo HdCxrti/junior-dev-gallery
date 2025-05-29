@@ -21,15 +21,40 @@ const GitHubStats = () => {  const [stats, setStats] = useState<GitHubStats>({
     loading: true,
     error: null,
     lastUpdated: new Date()
-  });
-  const fetchGitHubStats = async () => {
+  });  const fetchGitHubStats = async () => {
     setStats(prevStats => ({ ...prevStats, loading: true, error: null }));
     try {
       // Replace with your GitHub username
       const username = 'HdCxrti';
       
-      // Fetch repositories
-      const repoResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+      // Check if we have cached data and it's less than 30 mins old
+      const cachedStats = localStorage.getItem('githubStats');
+      const cachedTime = localStorage.getItem('githubStatsTime');
+      
+      if (cachedStats && cachedTime) {
+        const parsedStats = JSON.parse(cachedStats);
+        const timestamp = parseInt(cachedTime, 10);
+        const now = Date.now();
+        
+        // If cache is less than 30 minutes old, use it
+        if (now - timestamp < 30 * 60 * 1000) {
+          setStats({
+            ...parsedStats,
+            loading: false,
+            error: null,
+            lastUpdated: new Date(timestamp)
+          });
+          return;
+        }
+      }
+      
+      // Fetch repositories with a personal access token if available
+      const headers = {};
+      if (import.meta.env.VITE_GITHUB_TOKEN) {
+        headers['Authorization'] = `token ${import.meta.env.VITE_GITHUB_TOKEN}`;
+      }
+      
+      const repoResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`, { headers });
       if (!repoResponse.ok) throw new Error('Failed to fetch repositories');
       const repos = await repoResponse.json();
       
@@ -72,8 +97,7 @@ const GitHubStats = () => {  const [stats, setStats] = useState<GitHubStats>({
         // Fallback to estimate
         commitCount = Math.floor(repos.length * 35);
       }
-      
-      setStats({
+        const newStats = {
         repos: repos.length,
         stars: totalStars,
         commits: commitCount,
@@ -82,7 +106,18 @@ const GitHubStats = () => {  const [stats, setStats] = useState<GitHubStats>({
         loading: false,
         error: null,
         lastUpdated: new Date()
-      });
+      };
+      
+      // Cache the results
+      localStorage.setItem('githubStats', JSON.stringify({
+        repos: newStats.repos,
+        stars: newStats.stars,
+        commits: newStats.commits,
+        contributions: newStats.contributions
+      }));
+      localStorage.setItem('githubStatsTime', Date.now().toString());
+      
+      setStats(newStats);
     } catch (error) {
       console.error('Error fetching GitHub stats:', error);
       setStats(prevStats => ({
