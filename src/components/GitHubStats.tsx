@@ -13,7 +13,8 @@ interface GitHubStats {
   lastUpdated: Date;
 }
 
-const GitHubStats = () => {  const [stats, setStats] = useState<GitHubStats>({
+const GitHubStats = () => {  
+  const [stats, setStats] = useState<GitHubStats>({
     repos: 0,
     stars: 0,
     commits: 0,
@@ -21,17 +22,21 @@ const GitHubStats = () => {  const [stats, setStats] = useState<GitHubStats>({
     loading: true,
     error: null,
     lastUpdated: new Date()
-  });  const fetchGitHubStats = async () => {
+  });
+  
+  const fetchGitHubStats = async () => {
     setStats(prevStats => ({ ...prevStats, loading: true, error: null }));
     try {
       // Replace with your GitHub username
       const username = 'HdCxrti';
-      
-      // Check if we have cached data and it's less than 30 mins old
+        // Check if we have cached data and it's less than 30 mins old
       const cachedStats = localStorage.getItem('githubStats');
       const cachedTime = localStorage.getItem('githubStatsTime');
       
-      if (cachedStats && cachedTime) {
+      // When manually refreshing or if there's no cache, don't use cached data
+      const isUserRefresh = stats.lastUpdated.getTime() > 0 && !stats.loading;
+      
+      if (cachedStats && cachedTime && !isUserRefresh) {
         const parsedStats = JSON.parse(cachedStats);
         const timestamp = parseInt(cachedTime, 10);
         const now = Date.now();
@@ -96,8 +101,7 @@ const GitHubStats = () => {  const [stats, setStats] = useState<GitHubStats>({
         console.error('Error fetching detailed commit data:', commitError);
         // Fallback to estimate
         commitCount = Math.floor(repos.length * 35);
-      }
-        const newStats = {
+      }      const newStats = {
         repos: repos.length,
         stars: totalStars,
         commits: commitCount,
@@ -107,8 +111,19 @@ const GitHubStats = () => {  const [stats, setStats] = useState<GitHubStats>({
         error: null,
         lastUpdated: new Date()
       };
-      
-      // Cache the results
+        // Cache the results in localStorage
+      try {
+        localStorage.setItem('githubStats', JSON.stringify({
+          repos: newStats.repos,
+          stars: newStats.stars,
+          commits: newStats.commits,
+          contributions: newStats.contributions
+        }));
+        localStorage.setItem('githubStatsTime', Date.now().toString());
+      } catch (err) {
+        console.error('Error caching GitHub stats:', err);
+        // Continue even if caching fails
+      }
       localStorage.setItem('githubStats', JSON.stringify({
         repos: newStats.repos,
         stars: newStats.stars,
@@ -128,7 +143,6 @@ const GitHubStats = () => {  const [stats, setStats] = useState<GitHubStats>({
       }));
     }
   };
-
   // Fetch on initial load
   useEffect(() => {
     fetchGitHubStats();
