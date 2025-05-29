@@ -4,11 +4,13 @@ import ProjectCard from './ProjectCard';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Search, Filter } from 'lucide-react';
+import LoadingSpinner from './LoadingSpinner';
 
 const Projects = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeFilter, setActiveFilter] = useState('All');
   const [filteredProjects, setFilteredProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   
   const projects = [
     {
@@ -38,21 +40,26 @@ const Projects = () => {
 
   // Extract all unique tags from all projects for our filter options
   const allTags = ['All', ...new Set(projects.flatMap(project => project.tags))];
-
   // Filter projects based on search term and active filter
   useEffect(() => {
-    const filtered = projects.filter(project => {
-      const matchesSearch = searchTerm === '' || 
-        project.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-        project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        project.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-      
-      const matchesFilter = activeFilter === 'All' || project.tags.includes(activeFilter);
-      
-      return matchesSearch && matchesFilter;
-    });
+    setIsLoading(true);
     
-    setFilteredProjects(filtered);
+    // Simulate loading delay (remove this in production if not needed)
+    setTimeout(() => {
+      const filtered = projects.filter(project => {
+        const matchesSearch = searchTerm === '' || 
+          project.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+          project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          project.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+        
+        const matchesFilter = activeFilter === 'All' || project.tags.includes(activeFilter);
+        
+        return matchesSearch && matchesFilter;
+      });
+      
+      setFilteredProjects(filtered);
+      setIsLoading(false);
+    }, 500);
   }, [searchTerm, activeFilter]);
 
   return (
