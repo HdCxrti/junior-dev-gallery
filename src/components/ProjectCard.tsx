@@ -14,9 +14,10 @@ interface ProjectCardProps {
   demoLink?: string;
   codeLink?: string;
   index: number;
+  isFromGithub?: boolean;
 }
 
-const ProjectCard = ({ title, description, imageSrc, tags, demoLink, codeLink, index }: ProjectCardProps) => {
+const ProjectCard = ({ title, description, imageSrc, tags, demoLink, codeLink, index, isFromGithub }: ProjectCardProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   
