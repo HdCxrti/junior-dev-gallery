@@ -11,8 +11,58 @@ const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [githubProjects, setGithubProjects] = useState([]);
   
+  // Fetch projects from GitHub on component mount
+  useEffect(() => {
+    const fetchGithubProjects = async () => {
+      try {
+        const username = 'HdCxrti'; // Same username from GitHubStats
+        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=10`);
+        const data = await response.json();
+        
+        // Take the most recent project that has a description and is not a fork
+        const recentProject = data.filter(repo => repo.description && !repo.fork)[0];
+        
+        if (recentProject) {
+          // Get the repo's languages
+          const langResponse = await fetch(recentProject.languages_url);
+          const langData = await langResponse.json();
+          
+          // Transform language object to array of tags
+          const tags = Object.keys(langData);
+          
+          // Create a project object with the fetched data
+          const githubProject = {
+            title: recentProject.name,
+            description: recentProject.description,
+            // Use a placeholder image if no image is available
+            imageSrc: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1170&auto=format&fit=crop",
+            tags: tags.length > 0 ? tags : ["GitHub Project"],
+            demoLink: recentProject.homepage || null,
+            codeLink: recentProject.html_url,
+            isFromGithub: true
+          };
+          
+          setGithubProjects([githubProject]);
+        }
+      } catch (error) {
+        console.error('Error fetching GitHub projects:', error);
+      }
+    };
+    
+    fetchGithubProjects();
+  }, []);
+    // Combine hardcoded projects with GitHub projects
   const projects = [
+    {
+      title: "Weather Dashboard",
+      description: "A weather application that displays current weather and forecasts based on user location or search.",
+      imageSrc: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+      tags: ["HTML", "CSS", "JavaScript", "Weather API"],
+      demoLink: "#",
+      codeLink: "https://github.com/HdCxrti/weather-app"
+    },
     {
       title: "Portfolio Website",
       description: "A customized portfolio website to showcase my projects and skills, featuring a contact form with EmailJS integration.",
@@ -28,14 +78,6 @@ const Projects = () => {
       tags: ["React", "JavaScript", "CSS", "Recipe API"],
       demoLink: "#",
       codeLink: "https://github.com/HdCxrti/recipe-finder"
-    },
-    {
-      title: "Weather Dashboard",
-      description: "A weather application that displays current weather and forecasts based on user location or search.",
-      imageSrc: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
-      tags: ["HTML", "CSS", "JavaScript", "Weather API"],
-      demoLink: "#",
-      codeLink: "https://github.com/HdCxrti/weather-app"
     },  ];
 
   // Extract all unique tags from all projects for our filter options
@@ -106,13 +148,13 @@ const Projects = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.length > 0 ? filteredProjects.map((project, index) => (
             <ProjectCard 
-              key={index}
-              title={project.title}
+              key={index}              title={project.title}
               description={project.description}
               imageSrc={project.imageSrc}
               tags={project.tags}
               demoLink={project.demoLink}
               codeLink={project.codeLink}
+              isFromGithub={project.isFromGithub}
               index={index}
             />
           )) : (
