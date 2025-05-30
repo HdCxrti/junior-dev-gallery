@@ -16,7 +16,14 @@ const WorkExperience = () => {  const experiences: ExperienceItem[] = [
       period: "2023 - 2025",
       description: "Diagnosed and resolved complex mechanical and electrical issues using systematic troubleshooting approaches. Developed practical problem-solving skills and attention to detail that translate directly to software development. Expert in systematic debugging and finding efficient solutions under pressure.",
       skills: ["Problem Solving", "Diagnostics", "Client Communication", "Technical Documentation", "Attention to Detail"]
-    },    {
+    },
+    {
+      title: "Family Assistant",
+      company: "Grandfather's Estate",
+      period: "2020 - 2024",
+      description: "Provided assistance to grandfather with auto maintenance, home repairs, and lawn care before transitioning to focus fully on software development. Handled complex automotive repairs including brake replacements, oil changes, and diagnostic troubleshooting. Managed regular property maintenance including landscaping, equipment repair, and home improvements. This role developed my practical problem-solving abilities and technical aptitude that transfer well to software development.",
+      skills: ["Automotive Repair", "Home Maintenance", "Lawn Care", "Problem Solving", "Technical Skills", "Time Management"]
+    },{
       title: "OGP Associate",
       company: "Walmart - Online Grocery Pickup",
       period: "2021 - 2023",
@@ -33,9 +40,9 @@ const WorkExperience = () => {  const experiences: ExperienceItem[] = [
     {
       title: "Team Member",
       company: "Domino's Pizza",
-      period: "Started at age 14 (while in school)",
-      description: "Started working at a young age while balancing school responsibilities. Learned fundamentals of customer service, time management, and working in a team environment. This early work experience built a foundation for strong work ethic and responsibility.",
-      skills: ["Time Management", "Customer Service", "Multitasking", "Responsibility"]
+      period: "2018 - 2020",
+      description: "Started working at age 14 while balancing school responsibilities. Handled various responsibilities including customer service, food preparation, and order fulfillment. Developed strong multitasking abilities and teamwork skills in a fast-paced environment. This early work experience built a foundation for work ethic and professional responsibility.",
+      skills: ["Time Management", "Customer Service", "Multitasking", "Responsibility", "Teamwork", "Food Preparation"]
     }
   ];
 
