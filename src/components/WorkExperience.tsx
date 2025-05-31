@@ -54,9 +54,8 @@ const WorkExperience = () => {  const experiences: ExperienceItem[] = [
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white">
             Work History
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            My professional journey starting from age 14, showing my long-term commitment to hard work and continuous growth.
+          </h2>          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            My professional journey starting from age 14, showing my long-term commitment to hard work, continuous growth, and dedication to skill development.
           </p>
         </div>
 
