@@ -98,4 +98,130 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Smooth scrolling for page navigation */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom animations for Hero section */
+@keyframes slideText {
+  0%, 25% { transform: translateY(0); }
+  33%, 58% { transform: translateY(-33.33%); }
+  66%, 91% { transform: translateY(-66.66%); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.sliding-text {
+  animation: slideText 10s infinite;
+}
+
+.rotate-animation {
+  animation: rotate 20s linear infinite;
+}
+
+.rotate-animation-reverse {
+  animation: rotateReverse 15s linear infinite;
+}
+
+/* Tech bubbles styling */
+.tech-bubble {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #9b87f5;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  animation: float 3s ease-in-out infinite;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 5;
+}
+
+.dark .tech-bubble {
+  background-color: #1A1F2C;
+  color: #9b87f5;
+}
+
+.tech-bubble:hover {
+  transform: scale(1.2);
+  box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+}
+
+.tech-label {
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+.html-icon {
+  top: 10%;
+  right: 25%;
+  animation-delay: 0.5s;
+}
+
+.css-icon {
+  top: 70%;
+  right: 15%;
+  animation-delay: 1.5s;
+}
+
+.js-icon {
+  top: 25%;
+  left: 15%;
+  animation-delay: 1s;
+}
+
+.react-icon {
+  bottom: 15%;
+  left: 30%;
+  animation-delay: 2s;
+}
+
+/* Card hover effects */
+.card-hover-effect {
+  transition: all 0.3s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Add smooth transitions to all interactive elements */
+a, button {
+  transition: all 0.2s ease;
+}
+
+/* Enhanced focus states */
+:focus {
+  outline: 2px solid rgba(155, 135, 245, 0.5);
+  outline-offset: 2px;
+}
+
+/* Fade in animation for content sections */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }

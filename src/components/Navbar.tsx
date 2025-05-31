@@ -18,13 +18,12 @@ const Navbar = () => {
       const sectionElements = sections.map(id => 
         id === 'home' ? document.querySelector('section') : document.querySelector(`#${id}`)
       );
-      
-      const scrollPosition = window.scrollY + 100; // Offset for navbar height
+        const scrollPosition = window.scrollY + 100; // Offset for navbar height
       
       sectionElements.forEach((section, index) => {
         if (section) {
-          const sectionTop = section.offsetTop;
-          const sectionBottom = sectionTop + section.offsetHeight;
+          const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+          const sectionBottom = sectionTop + section.clientHeight;
           
           if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
             setActiveSection(sections[index]);
