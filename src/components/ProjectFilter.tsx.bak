@@ -1,0 +1,102 @@
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+
+interface ProjectFilterProps {
+  activeFilter: string;
+  setActiveFilter: (filter: string) => void;
+  categories: string[];
+}
+
+interface FilterButtonProps {
+  active: boolean;
+  onClick: () => void;
+  label: string;
+}
+
+const FilterButton: React.FC<FilterButtonProps> = ({ active, onClick, label }) => {
+  return (
+    <motion.div whileTap={{ scale: 0.95 }}>
+      <Button
+        variant={active ? 'default' : 'outline'}
+        className={active ? 'bg-portfolio-purple hover:bg-portfolio-indigo relative' : 'relative'}
+        onClick={onClick}
+      >
+        {label}
+        {active && (
+          <motion.div
+            className="absolute -bottom-1 left-0 right-0 h-1 bg-portfolio-indigo"
+            layoutId="filterUnderline"
+            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+          />
+        )}
+      </Button>
+    </motion.div>
+  );
+};
+
+const ProjectFilter: React.FC<ProjectFilterProps> = ({ 
+  activeFilter, 
+  setActiveFilter,
+  categories 
+}) => {
+  return (
+    <motion.div 
+      className="flex flex-wrap gap-2 justify-center mb-8"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <FilterButton 
+        active={activeFilter === 'all'} 
+        onClick={() => setActiveFilter('all')}
+        label="All"
+      />
+      
+      {categories.map((category) => (
+        <FilterButton 
+          key={category}
+          active={activeFilter === category}
+          onClick={() => setActiveFilter(category)}
+          label={category}
+        />
+      ))}
+    </motion.div>
+  );
+};
+
+export default ProjectFilter;
+
+interface FilterButtonProps {
+  active: boolean;
+  onClick: () => void;
+  label: string;
+}
+
+const FilterButton: React.FC<FilterButtonProps> = ({ active, onClick, label }) => {
+  return (
+    <motion.div whileTap={{ scale: 0.95 }}>
+      <Button
+        variant={active ? 'default' : 'outline'}
+        className={active ? 'bg-portfolio-purple hover:bg-portfolio-indigo relative' : 'relative'}
+        onClick={onClick}
+      >
+        {label}
+        {active && (
+          <motion.div
+            className="absolute -bottom-1 left-0 right-0 h-1 bg-portfolio-indigo"
+            layoutId="filterUnderline"
+            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+          />
+        )}
+      </Button>
+    </motion.div>
+  );
+          {category.charAt(0).toUpperCase() + category.slice(1)}
+        </Button>
+      ))}
+    </div>
+  );
+};
+
+export default ProjectFilter;

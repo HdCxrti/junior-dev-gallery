@@ -5,10 +5,11 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Search, Filter } from 'lucide-react';
 import LoadingSpinner from './LoadingSpinner';
+import ProjectFilter from './ProjectFilter';
 
 const Projects = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeFilter, setActiveFilter] = useState('All');
+  const [activeFilter, setActiveFilter] = useState('all');
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [githubProjects, setGithubProjects] = useState([]);
@@ -79,9 +80,8 @@ const Projects = () => {
       demoLink: "#",
       codeLink: "https://github.com/HdCxrti/recipe-finder"
     },  ];
-
   // Extract all unique tags from all projects for our filter options
-  const allTags = ['All', ...new Set(projects.flatMap(project => project.tags))];
+  const allTags = ['all', ...new Set(projects.flatMap(project => project.tags))];
   // Filter projects based on search term and active filter
   useEffect(() => {
     setIsLoading(true);
@@ -94,7 +94,7 @@ const Projects = () => {
           project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
           project.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
         
-        const matchesFilter = activeFilter === 'All' || project.tags.includes(activeFilter);
+        const matchesFilter = activeFilter === 'all' || project.tags.includes(activeFilter);
         
         return matchesSearch && matchesFilter;
       });
@@ -126,22 +126,11 @@ const Projects = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            
-            <div className="flex flex-wrap justify-center gap-2">
-              {allTags.map((tag) => (
-                <Badge 
-                  key={tag}
-                  className={`cursor-pointer ${
-                    activeFilter === tag 
-                      ? 'bg-portfolio-purple text-white' 
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300'
-                  }`}
-                  onClick={() => setActiveFilter(tag)}
-                >
-                  {tag}
-                </Badge>
-              ))}
-            </div>
+              <ProjectFilter
+              activeFilter={activeFilter}
+              setActiveFilter={setActiveFilter}
+              categories={allTags.filter(tag => tag !== 'All')}
+            />
           </div>
         </div>
         
