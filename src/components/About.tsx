@@ -46,27 +46,33 @@ const About = () => {
           <div className="w-full md:w-1/2">
             <h3 className="text-2xl font-bold mb-4 dark:text-white">
               Hello! I'm Jacob Dutra
-            </h3>            <p className="text-gray-600 dark:text-gray-400 mb-8">
-              Hey there, I'm someone who likes to keep things simple and get
-              things done. I'm all about learning what I need, building what I
-              want, and fixing what's broken. After working as an automotive technician 
-              at Massey Hyundai until early 2025, I made the decision to fully commit 
-              to my passion for coding and web development. Since then, I've been intensively
-              studying and building projects to prepare for my career transition.
-              With my background in hands-on mechanical troubleshooting, I bring unique
-              problem-solving skills to software development. I'm not afraid to dig into new tech, 
-              debug complex issues, and create practical solutions that just work.
-            </p><div className="mb-8">
+            </h3>{" "}
+            <p className="text-gray-600 dark:text-gray-400 mb-8">
+              I started working at 14 and kept moving forward. I've done
+              everything from landscaping to retail to automotive repair. Most
+              recently I worked at Massey Hyundai as a technician. In early 2025
+              I made the decision to fully commit to my passion for coding and
+              web development. Since then I’ve been studying hard and building
+              real projects to prep for my career shift. I focus on learning
+              what I need, building what I want, and fixing what’s broken. With
+              a background in hands-on mechanical troubleshooting, I bring a
+              unique problem-solving mindset to software. I’m not afraid to dig
+              into new tech, debug tough issues, and create solutions that work.
+            </p>
+            <div className="mb-8">
               <h4 className="font-bold text-lg mb-4 dark:text-white">
                 My Skills:
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
                 {skills.map((skill, index) => (
-                  <SkillBar key={index} skill={skill.name} percentage={skill.level} />
+                  <SkillBar
+                    key={index}
+                    skill={skill.name}
+                    percentage={skill.level}
+                  />
                 ))}
               </div>
             </div>
-
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 className="bg-portfolio-purple hover:bg-portfolio-indigo flex items-center gap-2"
@@ -93,10 +99,11 @@ const About = () => {
                   <Github className="h-4 w-4" />
                   Visit GitHub
                 </a>
-              </Button>            </div>
+              </Button>{" "}
+            </div>
           </div>
         </div>
-        
+
         {/* GitHub Stats */}
         <div className="mt-20">
           <GitHubStats />
