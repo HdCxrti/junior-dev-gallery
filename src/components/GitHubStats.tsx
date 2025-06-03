@@ -66,15 +66,13 @@ const GitHubStats = () => {
           });
           return;
         }
-      }
-        // Use the correct port for your Ignition API
+      }      // Use the correct port for your Ignition API
       console.log('Fetching GitHub stats from API...');
-      const apiResponse = await fetch('http://localhost:3001/data/API/Portfolio/Stats', {
+      const apiResponse = await fetch('http://localhost:8088/data/API/Portfolio/Stats', {
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        // Ensure credentials are included for any authentication
         credentials: 'include'
       });
       
