@@ -69,11 +69,13 @@ const GitHubStats = () => {
       }      // Use the correct port for your Ignition API
       console.log('Fetching GitHub stats from API...');
       const apiResponse = await fetch('http://localhost:8088/data/API/Portfolio/Stats', {
+        method: 'GET',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        credentials: 'include'
+        mode: 'cors',
+        credentials: 'omit'
       });
       
       if (!apiResponse.ok) {
