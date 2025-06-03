@@ -44,8 +44,6 @@ const GitHubStats = () => {
     
     setStats(prevStats => ({ ...prevStats, loading: true, error: null }));
     try {
-      // Replace with your GitHub username
-      const username = 'HdCxrti';
       // Check if we have cached data and it's less than 15 mins old
       const cachedStats = localStorage.getItem('githubStats');
       const cachedTime = localStorage.getItem('githubStatsTime');
@@ -69,88 +67,33 @@ const GitHubStats = () => {
           return;
         }
       }
+        // Use the correct port for your Ignition API
+      console.log('Fetching GitHub stats from API...');
+      const apiResponse = await fetch('http://localhost:3001/data/API/Portfolio/Stats', {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        // Ensure credentials are included for any authentication
+        credentials: 'include'
+      });
       
-      // Fetch repositories with a personal access token if available
-      const headers = {};
-      if (import.meta.env.VITE_GITHUB_TOKEN) {
-        headers['Authorization'] = `token ${import.meta.env.VITE_GITHUB_TOKEN}`;
+      if (!apiResponse.ok) {
+        console.error('API Response Error:', await apiResponse.text());
+        throw new Error(`Failed to fetch GitHub stats: ${apiResponse.status} ${apiResponse.statusText}`);
       }
       
-      const repoResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`, { headers });
-      if (!repoResponse.ok) throw new Error('Failed to fetch repositories');
-      const repos = await repoResponse.json();
+      const apiData = await apiResponse.json();
+      console.log('API data received:', apiData);
       
-      // Calculate stars from repos
-      const totalStars = repos.reduce((total: number, repo: any) => total + repo.stargazers_count, 0);
-      
-      // Fetch user data for contribution stats
-      const userResponse = await fetch(`https://api.github.com/users/${username}`);
-      if (!userResponse.ok) throw new Error('Failed to fetch user data');
-      const userData = await userResponse.json();
-      
-      // Try to get contribution data from profile page directly (scraping HTML)
-      let contributionCount = 0;
-      let totalCommitCount = 0;
-      
-      try {
-        // Get the contribution graph from GitHub profile page
-        const profileResponse = await fetch(`https://api.github.com/users/${username}/events?per_page=100`);
-        if (profileResponse.ok) {
-          const events = await profileResponse.json();
-          
-          // Count PushEvents which represent commits
-          let pushEvents = events.filter((event: any) => event.type === 'PushEvent');
-          let commitCount = 0;
-          
-          // Count actual commits from push events
-          pushEvents.forEach((event: any) => {
-            if (event.payload && event.payload.commits) {
-              commitCount += event.payload.commits.length;
-            }
-          });
-          
-          // If we have events, use them for a more accurate count
-          if (commitCount > 0) {
-            totalCommitCount = commitCount * 3; // Account for only seeing recent events
-          }
-        }
-        
-        // Also try to get accurate contribution count from user profile APIs
-        const contributionsResponse = await fetch(`https://api.github.com/users/${username}/events?per_page=100`);
-        if (contributionsResponse.ok) {
-          const events = await contributionsResponse.json();
-          // Count various contribution events
-          const contributionEvents = events.filter((event: any) => 
-            event.type === 'PushEvent' || 
-            event.type === 'PullRequestEvent' ||
-            event.type === 'IssueEvent' ||
-            event.type === 'CreateEvent' ||
-            event.type === 'CommitCommentEvent'
-          );
-          
-          if (contributionEvents.length > 0) {
-            // Extrapolate from sample to get annual contributions
-            contributionCount = contributionEvents.length * 10;
-          }
-        }
-      } catch (contributionError) {
-        console.error('Error fetching contribution data:', contributionError);
-      }
-      
-      // If we couldn't get data from events, fall back to more reliable methods
-      if (totalCommitCount === 0) {
-        totalCommitCount = 360; // Use from screenshot/actual count
-      }
-      
-      if (contributionCount === 0) {
-        contributionCount = 360; // From GitHub contribution graph on screenshot
-      }
+      // Extract the data from API response
+      const { repos, stars, commits, contributions } = apiData;
       
       const newStats = {
-        repos: repos.length,
-        stars: totalStars,
-        commits: totalCommitCount, // Use the calculated total commit count
-        contributions: contributionCount, // Use the calculated contribution count
+        repos: repos || 0,
+        stars: stars || 0,
+        commits: commits || 0,
+        contributions: contributions || 0,
         loading: false,
         error: null,
         lastUpdated: new Date()
@@ -180,7 +123,7 @@ const GitHubStats = () => {
       setStats(prevStats => ({
         ...prevStats,
         loading: false,
-        error: 'Failed to load GitHub stats',
+        error: error instanceof Error ? `Failed to load GitHub stats: ${error.message}` : 'Failed to load GitHub stats',
         lastUpdated: new Date()
       }));
       // Reset user refresh state on error

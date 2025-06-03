@@ -6,6 +6,7 @@ import WorkExperience from '@/components/WorkExperience';
 import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import GitHubStats from '@/components/GitHubStats';
 
 const Index = () => {  return (
     <div className="min-h-screen">
@@ -13,6 +14,7 @@ const Index = () => {  return (
       <Hero />
       <About />
       <WorkExperience />
+      <GitHubStats />
       <Testimonials />
       <Contact />
       <Footer />
