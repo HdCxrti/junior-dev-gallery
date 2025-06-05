@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Code, ExternalLink, Maximize2, X } from 'lucide-react';
@@ -35,11 +34,11 @@ const ProjectCard = ({ title, description, imageSrc, tags, demoLink, codeLink, i
             alt={title} 
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          <div className={`absolute inset-0 bg-portfolio-purple/30 flex items-center justify-center transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+          <div className={`absolute inset-0 bg-portfolio-blue/30 flex items-center justify-center transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
             <Button 
               variant="secondary" 
               size="icon" 
-              className="bg-white/90 dark:bg-black/70 hover:bg-white dark:hover:bg-black/90 text-portfolio-purple rounded-full shadow-lg"
+              className="bg-white/90 dark:bg-black/70 hover:bg-white dark:hover:bg-black/90 text-portfolio-blue rounded-full shadow-lg"
               onClick={() => setIsDialogOpen(true)}
             >
               <Maximize2 className="h-5 w-5" />
@@ -50,7 +49,7 @@ const ProjectCard = ({ title, description, imageSrc, tags, demoLink, codeLink, i
         <CardTitle className="text-xl dark:text-white">{title}</CardTitle>
         <div className="flex flex-wrap gap-2 mt-2">
           {tags.map((tag, i) => (
-            <Badge key={i} variant="outline" className="bg-portfolio-purple/10 text-portfolio-purple border-portfolio-purple/20 dark:bg-portfolio-purple/20">
+            <Badge key={i} variant="outline" className="bg-portfolio-blue/10 text-portfolio-blue border-portfolio-blue/20 dark:bg-portfolio-blue/20">
               {tag}
             </Badge>
           ))}
@@ -63,7 +62,7 @@ const ProjectCard = ({ title, description, imageSrc, tags, demoLink, codeLink, i
       </CardContent>
       <CardFooter className="flex justify-between gap-4">
         {demoLink && (
-          <Button asChild className="flex-1 bg-portfolio-purple hover:bg-portfolio-indigo">
+          <Button asChild className="flex-1 bg-portfolio-blue hover:bg-portfolio-indigo">
             <a href={demoLink} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="mr-2 h-4 w-4" />
               Live Demo
@@ -71,7 +70,7 @@ const ProjectCard = ({ title, description, imageSrc, tags, demoLink, codeLink, i
           </Button>
         )}
         {codeLink && (
-          <Button asChild variant="outline" className="flex-1 border-portfolio-purple text-portfolio-purple hover:bg-portfolio-purple/10">
+          <Button asChild variant="outline" className="flex-1 border-portfolio-blue text-portfolio-blue hover:bg-portfolio-blue/10">
             <a href={codeLink} target="_blank" rel="noopener noreferrer">
               <Code className="mr-2 h-4 w-4" />
               View Code
@@ -86,7 +85,7 @@ const ProjectCard = ({ title, description, imageSrc, tags, demoLink, codeLink, i
             <DialogTitle className="text-2xl">{title}</DialogTitle>
             <DialogDescription className="flex flex-wrap gap-2 mt-2">
               {tags.map((tag, i) => (
-                <Badge key={i} variant="outline" className="bg-portfolio-purple/10 text-portfolio-purple border-portfolio-purple/20 dark:bg-portfolio-purple/20">
+                <Badge key={i} variant="outline" className="bg-portfolio-blue/10 text-portfolio-blue border-portfolio-blue/20 dark:bg-portfolio-blue/20">
                   {tag}
                 </Badge>
               ))}
@@ -106,7 +105,7 @@ const ProjectCard = ({ title, description, imageSrc, tags, demoLink, codeLink, i
           <p className="text-gray-700 dark:text-gray-300 mb-6">{description}</p>
           <div className="flex justify-between gap-4">
             {demoLink && (
-              <Button asChild className="flex-1 bg-portfolio-purple hover:bg-portfolio-indigo">
+              <Button asChild className="flex-1 bg-portfolio-blue hover:bg-portfolio-indigo">
                 <a href={demoLink} target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="mr-2 h-4 w-4" />
                   Live Demo
@@ -114,7 +113,7 @@ const ProjectCard = ({ title, description, imageSrc, tags, demoLink, codeLink, i
               </Button>
             )}
             {codeLink && (
-              <Button asChild variant="outline" className="flex-1 border-portfolio-purple text-portfolio-purple hover:bg-portfolio-purple/10">
+              <Button asChild variant="outline" className="flex-1 border-portfolio-blue text-portfolio-blue hover:bg-portfolio-blue/10">
                 <a href={codeLink} target="_blank" rel="noopener noreferrer">
                   <Code className="mr-2 h-4 w-4" />
                   View Code

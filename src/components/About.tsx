@@ -86,7 +86,7 @@ const About = () => {
               </Button>
               <Button
                 variant="outline"
-                className="border-portfolio-purple text-portfolio-purple hover:bg-portfolio-purple/10 dark:border-portfolio-purple/70 dark:text-portfolio-purple/90 flex items-center gap-2"
+                className="border-portfolio-blue text-portfolio-blue hover:bg-portfolio-blue/10 dark:border-portfolio-blue/70 dark:text-portfolio-blue/90 flex items-center gap-2"
                 asChild
               >
                 <a

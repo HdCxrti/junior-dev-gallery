@@ -108,7 +108,7 @@ const Projects = () => {
     <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
-          <Badge className="bg-portfolio-purple/10 text-portfolio-purple border-portfolio-purple/20 mb-4 dark:bg-portfolio-purple/20">Portfolio</Badge>
+          <Badge className="bg-portfolio-blue/10 text-portfolio-blue border-portfolio-blue/20 mb-4 dark:bg-portfolio-blue/20">Portfolio</Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white">My Recent Projects</h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
             Here are some of my recent projects showcasing my skills and experience. Feel free to check out the code and live demos.
@@ -121,7 +121,7 @@ const Projects = () => {
               <Input 
                 type="text" 
                 placeholder="Search projects..." 
-                className="pl-10 border-portfolio-purple/20 focus:border-portfolio-purple dark:bg-gray-700"
+                className="pl-10 border-portfolio-blue/20 focus:border-portfolio-blue dark:bg-gray-700"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />

@@ -44,8 +44,7 @@ const BlogPreview = () => {
   return (
     <section className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <Badge className="bg-portfolio-purple/10 text-portfolio-purple border-portfolio-purple/20 mb-4 dark:bg-portfolio-purple/20">
+        <div className="text-center mb-16">          <Badge className="bg-portfolio-blue/10 text-portfolio-blue border-portfolio-blue/20 mb-4 dark:bg-portfolio-blue/20">
             Blog
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white">
@@ -81,7 +80,7 @@ const BlogPreview = () => {
                 </p>
               </CardContent>
               <CardFooter className="px-6 pb-6 pt-0">
-                <Button variant="link" className="text-portfolio-purple p-0 h-auto flex items-center gap-2 hover:text-portfolio-indigo">
+                <Button variant="link" className="text-portfolio-blue p-0 h-auto flex items-center gap-2 hover:text-portfolio-indigo">
                   Read More
                   <ArrowRight className="h-4 w-4" />
                 </Button>
@@ -91,7 +90,7 @@ const BlogPreview = () => {
         </div>
         
         <div className="text-center mt-12">
-          <Button className="bg-portfolio-purple hover:bg-portfolio-indigo">
+          <Button className="bg-portfolio-blue hover:bg-portfolio-indigo">
             View All Articles
           </Button>
         </div>

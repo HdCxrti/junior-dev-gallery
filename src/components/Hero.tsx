@@ -52,7 +52,7 @@ const Hero = () => {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
-                className="bg-portfolio-purple hover:bg-portfolio-indigo text-white px-8 py-6 rounded-md transition-transform hover:scale-105 shadow-lg hover:shadow-portfolio-purple/20"
+                className="bg-portfolio-blue hover:bg-portfolio-indigo text-white px-8 py-6 rounded-md transition-transform hover:scale-105 shadow-lg hover:shadow-portfolio-blue/20"
                 size="lg"
                 asChild
               >
@@ -124,7 +124,7 @@ const Hero = () => {
                 style={{ animationDuration: "15s" }}
               ></div>
 
-              <div className="w-64 h-64 md:w-80 md:h-80 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-portfolio-blue to-portfolio-purple flex items-center justify-center shadow-xl">
+              <div className="w-64 h-64 md:w-80 md:h-80 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-portfolio-blue to-portfolio-indigo flex items-center justify-center shadow-xl">
                 <div className="w-60 h-60 md:w-76 md:h-76 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center overflow-hidden">
                   <img
                     src="/images/coding-desktop.jpg.png"
@@ -154,7 +154,7 @@ const Hero = () => {
         <div className="flex justify-center mt-16">
           <a
             href="#projects"
-            className="flex flex-col items-center text-portfolio-purple hover:text-portfolio-indigo transition-colors hover:scale-110 transform transition-transform"
+            className="flex flex-col items-center text-portfolio-blue hover:text-portfolio-indigo transition-colors hover:scale-110 transform transition-transform"
           >
             <span className="mb-2 text-sm">Scroll Down</span>
             <ArrowDown className="animate-bounce" />

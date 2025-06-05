@@ -58,7 +58,7 @@ const Navbar = () => {
           className="font-bold text-2xl relative group"
         >
           <span className="text-portfolio-purple dark:text-portfolio-purple transition-all">Portfolio</span>
-          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-portfolio-purple to-portfolio-indigo group-hover:w-full transition-all duration-300"></span>
+          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-portfolio-blue to-portfolio-indigo group-hover:w-full transition-all duration-300"></span>
         </a>
         
         {/* Desktop Navigation */}
@@ -72,7 +72,7 @@ const Navbar = () => {
               }`}
             >
               {link.name}
-              <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-portfolio-purple to-portfolio-indigo transition-all duration-300 ${
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-portfolio-blue to-portfolio-indigo transition-all duration-300 ${
                 activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'
               }`}></span>
             </a>
@@ -80,7 +80,7 @@ const Navbar = () => {
           
           <ThemeToggle />
           
-          <Button className="bg-portfolio-purple hover:bg-portfolio-indigo transition-all duration-300 transform hover:scale-105" asChild>
+          <Button className="bg-portfolio-blue hover:bg-portfolio-indigo transition-all duration-300 transform hover:scale-105" asChild>
             <a href="/resume/Jake_Dutra_Software_Developer_Resume.pdf" target="_blank" rel="noopener noreferrer">
               Resume
             </a>
@@ -129,7 +129,7 @@ const Navbar = () => {
             <ThemeToggle />
           </div>
           
-          <Button className="bg-portfolio-purple hover:bg-portfolio-indigo mt-4 w-full py-6" asChild>
+          <Button className="bg-portfolio-blue hover:bg-portfolio-indigo mt-4 w-full py-6" asChild>
             <a href="/resume/Jake_Dutra_Software_Developer_Resume.pdf" target="_blank" rel="noopener noreferrer">
               Download Resume
             </a>

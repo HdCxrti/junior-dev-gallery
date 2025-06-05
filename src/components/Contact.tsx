@@ -242,11 +242,9 @@ const Contact = () => {
                   className="min-h-[150px] dark:bg-gray-800 dark:border-gray-600 dark:text-white"
                   required
                 />
-              </div>
-
-              <Button 
+              </div>              <Button 
                 type="submit" 
-                className="bg-portfolio-purple hover:bg-portfolio-indigo w-full sm:w-auto"
+                className="bg-portfolio-blue hover:bg-portfolio-indigo w-full sm:w-auto"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (

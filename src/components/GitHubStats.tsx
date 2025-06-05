@@ -10,17 +10,18 @@ interface GitHubStats {
   stars: number;
   commits: number;
   contributions: number;
+  forks: number;  // Added forks property
   loading: boolean;
   error: string | null;
   lastUpdated: Date;
 }
 
-const GitHubStats = () => {  
-  const [stats, setStats] = useState<GitHubStats>({
+const GitHubStats = () => {    const [stats, setStats] = useState<GitHubStats>({
     repos: 0,
     stars: 0,
     commits: 0,
     contributions: 0,
+    forks: 0,  // Initialize forks property
     loading: true,
     error: null,
     lastUpdated: new Date()
@@ -81,9 +82,8 @@ const GitHubStats = () => {
         
         console.log('Cache is too old. Fetching fresh data...');
       }
-      
-      console.log('Fetching GitHub stats directly from GitHub API...');
-      const username = 'HdCxrti';
+        console.log('Fetching GitHub stats directly from GitHub API...');
+      // Using username defined at component level
       
       // Fetch repositories to get repo count and stars
       const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
@@ -183,11 +183,14 @@ const GitHubStats = () => {
           console.log(`Adding ${commits} recent commits to base count`);
         }
       }
+        // Calculate forks from repos data
+      const forks = reposData.reduce((acc, repo) => acc + repo.forks_count, 0);
       
       const newStats = {
         repos: repos || 0,
         stars: stars || 0,
         commits: commits || 0,
+        forks: forks || 0,  // Add forks data
         contributions: contributions || 0,
         loading: false,
         error: null,
@@ -203,6 +206,7 @@ const GitHubStats = () => {
           repos: newStats.repos,
           stars: newStats.stars,
           commits: newStats.commits,
+          forks: newStats.forks,  // Include forks data
           contributions: newStats.contributions,
           timestamp: Date.now(),
           contributionSource: contributions === 105 ? 'fallback' : 'api'
@@ -234,6 +238,8 @@ const GitHubStats = () => {
       }
     }
   };
+    // Define GitHub username
+  const username = 'HdCxrti';
   
   // Fetch on initial load
   useEffect(() => {
@@ -302,16 +308,14 @@ const GitHubStats = () => {
                   <span className="text-2xl font-bold dark:text-white">{stats.stars}</span>
                 )}
                 <span className="text-sm text-gray-500 dark:text-gray-400">Stars</span>
-              </div>
-
-              <div className="flex flex-col items-center">
+              </div>              <div className="flex flex-col items-center">
                 <GitBranch className="h-8 w-8 text-portfolio-blue mb-2" />
                 {stats.loading ? (
                   <div className="h-8 w-8 rounded-full border-2 border-portfolio-blue/30 border-t-portfolio-blue animate-spin" />
                 ) : (
                   <span className="text-2xl font-bold dark:text-white">{stats.forks}</span>
                 )}
-                <span className="text-sm text-gray-500 dark:text-gray-400">Commits</span>
+                <span className="text-sm text-gray-500 dark:text-gray-400">Forks</span>
               </div>
 
               <div className="flex flex-col items-center">
@@ -349,28 +353,20 @@ const GitHubStats = () => {
                   </svg>
                 )}
                 Refresh Stats
-              </Button>
-              {githubUser && !stats.loading ? (
+              </Button>              {!stats.loading ? (
                 <Button 
                 asChild
                 className="bg-portfolio-blue hover:bg-portfolio-indigo gap-2"
                 >
-                <a href={`https://github.com/${githubUser}`} target="_blank" rel="noopener noreferrer">
+                <a href={`https://github.com/${username}`} target="_blank" rel="noopener noreferrer">
                   <Github className="h-4 w-4" />
                   View GitHub Profile
                 </a>
                 </Button>
-              ) : stats.loading ? (
+              ) : (
                 <div className="flex justify-center">
                   <div className="animate-spin h-6 w-6 border-b-2 border-portfolio-blue" />
                 </div>
-              ) : (
-              <Button asChild className="bg-portfolio-blue hover:bg-portfolio-indigo gap-2">
-                <a href="https://github.com/HdCxrti" target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4" />
-                  View GitHub Profile
-                </a>
-              </Button>
               )}
             </div>
           </div>

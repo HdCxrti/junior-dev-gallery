@@ -19,7 +19,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({ active, onClick, label }) =
     <motion.div whileTap={{ scale: 0.95 }}>
       <Button
         variant={active ? 'default' : 'outline'}
-        className={active ? 'bg-portfolio-purple hover:bg-portfolio-indigo relative' : 'relative'}
+        className={active ? 'bg-portfolio-blue hover:bg-portfolio-indigo relative' : 'relative'}
         onClick={onClick}
       >
         {label}
