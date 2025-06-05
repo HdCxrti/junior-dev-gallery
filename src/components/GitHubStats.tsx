@@ -10,25 +10,29 @@ interface GitHubStats {
   stars: number;
   commits: number;
   contributions: number;
-  forks: number;  // Added forks property
+  forks: number;
   loading: boolean;
   error: string | null;
   lastUpdated: Date;
 }
 
-const GitHubStats = () => {    const [stats, setStats] = useState<GitHubStats>({
+const GitHubStats = () => {  
+  // Define GitHub username at the top for better visibility
+  const username = 'HdCxrti';
+  
+  const [stats, setStats] = useState<GitHubStats>({
     repos: 0,
     stars: 0,
     commits: 0,
     contributions: 0,
-    forks: 0,  // Initialize forks property
+    forks: 0,
     loading: true,
     error: null,
     lastUpdated: new Date()
   });
+  
   // Track if the refresh was manually triggered
   const [isUserRefresh, setIsUserRefresh] = useState(false);
-  
   const fetchGitHubStats = async (manualRefresh = false) => {
     // Set user refresh state
     if (manualRefresh) {
@@ -190,13 +194,14 @@ const GitHubStats = () => {    const [stats, setStats] = useState<GitHubStats>({
         repos: repos || 0,
         stars: stars || 0,
         commits: commits || 0,
-        forks: forks || 0,  // Add forks data
+        forks: forks || 0,
         contributions: contributions || 0,
         loading: false,
         error: null,
         lastUpdated: new Date()
       };
-        // Cache the results in localStorage with additional debugging info
+      
+      // Cache the results in localStorage with additional debugging info
       try {
         // Store the current contribution value for debugging purposes
         console.log(`Caching GitHub stats. Contributions: ${contributions}`);
@@ -238,8 +243,6 @@ const GitHubStats = () => {    const [stats, setStats] = useState<GitHubStats>({
       }
     }
   };
-    // Define GitHub username
-  const username = 'HdCxrti';
   
   // Fetch on initial load
   useEffect(() => {
@@ -308,7 +311,9 @@ const GitHubStats = () => {    const [stats, setStats] = useState<GitHubStats>({
                   <span className="text-2xl font-bold dark:text-white">{stats.stars}</span>
                 )}
                 <span className="text-sm text-gray-500 dark:text-gray-400">Stars</span>
-              </div>              <div className="flex flex-col items-center">
+              </div>
+              
+              <div className="flex flex-col items-center">
                 <GitBranch className="h-8 w-8 text-portfolio-blue mb-2" />
                 {stats.loading ? (
                   <div className="h-8 w-8 rounded-full border-2 border-portfolio-blue/30 border-t-portfolio-blue animate-spin" />
@@ -353,15 +358,17 @@ const GitHubStats = () => {    const [stats, setStats] = useState<GitHubStats>({
                   </svg>
                 )}
                 Refresh Stats
-              </Button>              {!stats.loading ? (
+              </Button>
+              
+              {!stats.loading ? (
                 <Button 
-                asChild
-                className="bg-portfolio-blue hover:bg-portfolio-indigo gap-2"
+                  asChild
+                  className="bg-portfolio-blue hover:bg-portfolio-indigo gap-2"
                 >
-                <a href={`https://github.com/${username}`} target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4" />
-                  View GitHub Profile
-                </a>
+                  <a href={`https://github.com/${username}`} target="_blank" rel="noopener noreferrer">
+                    <Github className="h-4 w-4" />
+                    View GitHub Profile
+                  </a>
                 </Button>
               ) : (
                 <div className="flex justify-center">
