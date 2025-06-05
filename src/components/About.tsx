@@ -2,7 +2,6 @@ import { ArrowRight, Code, FileText, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import SkillBar from "./SkillBar";
-import GitHubStats from "./GitHubStats";
 
 const About = () => {
   const skills = [
@@ -101,13 +100,7 @@ const About = () => {
                 </a>
               </Button>{" "}
             </div>
-          </div>
-        </div>
-
-        {/* GitHub Stats */}
-        <div className="mt-20">
-          <GitHubStats />
-        </div>
+          </div>        </div>
       </div>
     </section>
   );
