@@ -62,14 +62,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				},
-                portfolio: {
-                    'blue': '#0EA5E9',
-                    'indigo': '#8B5CF6',
-                    'purple': '#9b87f5',
-                    'dark': '#1A1F2C',
-                    'light': '#F6F6F7',
-                    'gray': '#8E9196'
+				},                portfolio: {
+                    'blue': '#2D5DA1',      // Professional darker blue
+                    'indigo': '#4A6FA5',    // Subtle indigo blue
+                    'purple': '#3C5E8B',    // More neutral blue/purple
+                    'accent': '#D4AF37',    // Gold accent for professional touch
+                    'dark': '#283747',      // Darker shade for backgrounds
+                    'light': '#F5F7FA',     // Light background
+                    'gray': '#6C7A89'       // Professional gray
                 }
 			},
 			borderRadius: {
