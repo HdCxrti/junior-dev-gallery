@@ -1,5 +1,7 @@
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Github, Star, GitBranch, Code, Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -248,80 +250,83 @@ const GitHubStats = () => {
   }, []);
   
   return (
-    <div className="py-12 bg-gray-50 dark:bg-gray-800">
+    <section id="github-stats" className="py-16 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4">
+        <Badge className="bg-portfolio-blue/10 text-portfolio-blue border-portfolio-blue/20 mb-4 dark:bg-portfolio-blue/20">GitHub Stats</Badge>
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-2xl font-bold mb-8 dark:text-white">My GitHub Activity</h3>
           
           {stats.loading ? (
             <div className="flex justify-center items-center p-8">
-              <Loader2 className="h-8 w-8 text-portfolio-purple animate-spin" />
+              <Loader2 className="h-8 w-8 text-portfolio-blue animate-spin" />
               <span className="ml-2 text-gray-600 dark:text-gray-300">Loading GitHub stats...</span>
             </div>
           ) : stats.error ? (
-            <div className="p-6 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 rounded-lg mb-8">
-              <p>{stats.error}</p>
-              <p className="text-sm mt-2">Displaying placeholder data instead.</p>
+            <div className="text-center py-10">
+              <Alert variant="destructive">
+                <AlertTitle>Error loading stats</AlertTitle>
+                <AlertDescription>
+                  {stats.error}
+                </AlertDescription>
+                {stats.loading && <Loader2 className="h-8 w-8 text-portfolio-blue animate-spin" />}
+              </Alert>
+              
+              <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+                <p>Here are some things you can try:</p>
+                <ul className="list-disc list-inside space-y-1">
+                  <li>Check your internet connection</li>
+                  <li>Reload the page</li>
+                  <li>Come back later, stats update hourly</li>
+                </ul>
+              </div>
             </div>
           ) : null}
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <Card className="text-center p-4 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-              <CardContent className="p-0">
-                <div className="flex flex-col items-center">
-                  <Github className="h-8 w-8 text-portfolio-purple mb-2" />
-                  {stats.loading ? (
-                    <div className="h-8 w-8 rounded-full border-2 border-portfolio-purple/30 border-t-portfolio-purple animate-spin" />
-                  ) : (
-                    <span className="text-2xl font-bold dark:text-white">{stats.repos}</span>
-                  )}
-                  <span className="text-sm text-gray-500 dark:text-gray-400">Repositories</span>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="text-center p-4 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-              <CardContent className="p-0">
-                <div className="flex flex-col items-center">
-                  <Star className="h-8 w-8 text-portfolio-purple mb-2" />
-                  {stats.loading ? (
-                    <div className="h-8 w-8 rounded-full border-2 border-portfolio-purple/30 border-t-portfolio-purple animate-spin" />
-                  ) : (
-                    <span className="text-2xl font-bold dark:text-white">{stats.stars}</span>
-                  )}
-                  <span className="text-sm text-gray-500 dark:text-gray-400">Stars</span>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="text-center p-4 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-              <CardContent className="p-0">
-                <div className="flex flex-col items-center">
-                  <GitBranch className="h-8 w-8 text-portfolio-purple mb-2" />
-                  {stats.loading ? (
-                    <div className="h-8 w-8 rounded-full border-2 border-portfolio-purple/30 border-t-portfolio-purple animate-spin" />
-                  ) : (
-                    <span className="text-2xl font-bold dark:text-white">{stats.commits}</span>
-                  )}
-                  <span className="text-sm text-gray-500 dark:text-gray-400">Commits</span>
-                </div>
-              </CardContent>
-            </Card>
-              <Card className="text-center p-4 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-              <CardContent className="p-0">
-                <div className="flex flex-col items-center">
-                  <Code className="h-8 w-8 text-portfolio-purple mb-2" />
-                  {stats.loading ? (
-                    <div className="h-8 w-8 rounded-full border-2 border-portfolio-purple/30 border-t-portfolio-purple animate-spin" />
-                  ) : (
-                    <span className="text-2xl font-bold dark:text-white">{stats.contributions}</span>
-                  )}
-                  <span className="text-sm text-gray-500 dark:text-gray-400">Contributions</span>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-            <div className="flex flex-col items-center">
+          <Card className="text-center p-4 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+            <CardContent className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="flex flex-col items-center">
+                <Github className="h-8 w-8 text-portfolio-blue mb-2" />
+                {stats.loading ? (
+                  <div className="h-8 w-8 rounded-full border-2 border-portfolio-blue/30 border-t-portfolio-blue animate-spin" />
+                ) : (
+                  <span className="text-2xl font-bold dark:text-white">{stats.repos}</span>
+                )}
+                <span className="text-sm text-gray-500 dark:text-gray-400">Repositories</span>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <Star className="h-8 w-8 text-portfolio-blue mb-2" />
+                {stats.loading ? (
+                  <div className="h-8 w-8 rounded-full border-2 border-portfolio-blue/30 border-t-portfolio-blue animate-spin" />
+                ) : (
+                  <span className="text-2xl font-bold dark:text-white">{stats.stars}</span>
+                )}
+                <span className="text-sm text-gray-500 dark:text-gray-400">Stars</span>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <GitBranch className="h-8 w-8 text-portfolio-blue mb-2" />
+                {stats.loading ? (
+                  <div className="h-8 w-8 rounded-full border-2 border-portfolio-blue/30 border-t-portfolio-blue animate-spin" />
+                ) : (
+                  <span className="text-2xl font-bold dark:text-white">{stats.forks}</span>
+                )}
+                <span className="text-sm text-gray-500 dark:text-gray-400">Commits</span>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <Code className="h-8 w-8 text-portfolio-blue mb-2" />
+                {stats.loading ? (
+                  <div className="h-8 w-8 rounded-full border-2 border-portfolio-blue/30 border-t-portfolio-blue animate-spin" />
+                ) : (
+                  <span className="text-2xl font-bold dark:text-white">{stats.contributions}</span>
+                )}
+                <span className="text-sm text-gray-500 dark:text-gray-400">Contributions</span>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <div className="flex flex-col items-center">
             <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
               <span className="font-medium">Last updated:</span> {stats.lastUpdated.toLocaleString()}
               <br />
@@ -331,7 +336,7 @@ const GitHubStats = () => {
               <Button 
                 onClick={() => fetchGitHubStats(true)} 
                 disabled={stats.loading}
-                className="bg-portfolio-purple hover:bg-portfolio-indigo gap-2"
+                className="bg-portfolio-blue hover:bg-portfolio-indigo gap-2"
               >
                 {stats.loading ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
@@ -345,17 +350,33 @@ const GitHubStats = () => {
                 )}
                 Refresh Stats
               </Button>
-              <Button asChild className="bg-portfolio-purple hover:bg-portfolio-indigo gap-2">
+              {githubUser && !stats.loading ? (
+                <Button 
+                asChild
+                className="bg-portfolio-blue hover:bg-portfolio-indigo gap-2"
+                >
+                <a href={`https://github.com/${githubUser}`} target="_blank" rel="noopener noreferrer">
+                  <Github className="h-4 w-4" />
+                  View GitHub Profile
+                </a>
+                </Button>
+              ) : stats.loading ? (
+                <div className="flex justify-center">
+                  <div className="animate-spin h-6 w-6 border-b-2 border-portfolio-blue" />
+                </div>
+              ) : (
+              <Button asChild className="bg-portfolio-blue hover:bg-portfolio-indigo gap-2">
                 <a href="https://github.com/HdCxrti" target="_blank" rel="noopener noreferrer">
                   <Github className="h-4 w-4" />
                   View GitHub Profile
                 </a>
               </Button>
+              )}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

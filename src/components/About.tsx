@@ -19,8 +19,7 @@ const About = () => {
   return (
     <section id="about" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <Badge className="bg-portfolio-purple/10 text-portfolio-purple border-portfolio-purple/20 mb-4 dark:bg-portfolio-purple/20">
+        <div className="text-center mb-16">          <Badge className="bg-portfolio-blue/10 text-portfolio-blue border-portfolio-blue/20 mb-4 dark:bg-portfolio-blue/20">
             About Me
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white">
@@ -31,7 +30,7 @@ const About = () => {
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="w-full md:w-1/2">
             <div className="relative">
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-md bg-gradient-to-br from-portfolio-blue to-portfolio-purple absolute -top-4 -left-4 z-0"></div>
+              <div className="w-64 h-64 md:w-80 md:h-80 rounded-md bg-gradient-to-br from-portfolio-blue to-portfolio-indigo absolute -top-4 -left-4 z-0"></div>
               <img
                 src="/images/laptop-tools.jpg.png"
                 alt="Jacob Dutra - Coding with tools"
@@ -74,7 +73,7 @@ const About = () => {
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
-                className="bg-portfolio-purple hover:bg-portfolio-indigo flex items-center gap-2"
+                className="bg-portfolio-blue hover:bg-portfolio-indigo flex items-center gap-2"
                 asChild
               >
                 <a
