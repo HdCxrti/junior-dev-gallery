@@ -1,19 +1,18 @@
-import { ArrowRight, Code, FileText, Github } from "lucide-react";
+import { ArrowRight, Code, FileText, Github, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import SkillBar from "./SkillBar";
+import SkillCard, { ProficiencyLevel } from "./SkillCard";
 
-const About = () => {
-  const skills = [
-    { name: "HTML/CSS", level: 90 },
-    { name: "JavaScript", level: 85 },
-    { name: "TypeScript", level: 80 },
-    { name: "React", level: 85 },
-    { name: "Next.js", level: 75 },
-    { name: "Tailwind CSS", level: 90 },
-    { name: "Node.js", level: 80 },
-    { name: "Express", level: 75 },
-    { name: "Git", level: 85 },
+const About = () => {  const skills = [
+    { name: "HTML/CSS", level: "Expert" as ProficiencyLevel, icon: "/icons/html-css.svg" },
+    { name: "JavaScript", level: "Advanced" as ProficiencyLevel, icon: "/icons/javascript.svg" },
+    { name: "TypeScript", level: "Advanced" as ProficiencyLevel, icon: "/icons/typescript.svg" },
+    { name: "React", level: "Advanced" as ProficiencyLevel, icon: "/icons/react.svg" },
+    { name: "Next.js", level: "Intermediate" as ProficiencyLevel, icon: "/icons/nextjs.svg" },
+    { name: "Tailwind CSS", level: "Expert" as ProficiencyLevel, icon: "/icons/tailwind.svg" },
+    { name: "Node.js", level: "Advanced" as ProficiencyLevel, icon: "/icons/nodejs.svg" },
+    { name: "Express", level: "Intermediate" as ProficiencyLevel, icon: "/icons/express.svg" },
+    { name: "Git", level: "Advanced" as ProficiencyLevel, icon: "/icons/git.svg" },
   ];
 
   return (
@@ -56,20 +55,83 @@ const About = () => {
               a background in hands-on mechanical troubleshooting, I bring a
               unique problem-solving mindset to software. I’m not afraid to dig
               into new tech, debug tough issues, and create solutions that work.
-            </p>
-            <div className="mb-8">
-              <h4 className="font-bold text-lg mb-4 dark:text-white">
+            </p>            <div className="mb-8">
+              <h4 className="font-bold text-lg mb-2 dark:text-white">
                 My Skills:
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
-                {skills.map((skill, index) => (
-                  <SkillBar
-                    key={index}
-                    skill={skill.name}
-                    percentage={skill.level}
-                  />
-                ))}
+              </h4>              <div className="flex items-center gap-1 mb-4 text-xs text-gray-500 dark:text-gray-400">
+                <Info className="h-3 w-3" />
+                <span>Skills are grouped by proficiency level</span>
               </div>
+
+              {/* Expert Skills */}
+              <div className="mb-6">
+                <h5 className="text-md font-semibold mb-3 text-portfolio-blue dark:text-portfolio-blue/90">Expert Level</h5>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {skills
+                    .filter(skill => skill.level === "Expert")
+                    .map((skill, index) => (
+                      <SkillCard
+                        key={`expert-${index}`}
+                        skill={skill.name}
+                        level={skill.level}
+                        icon={skill.icon}
+                      />
+                    ))}
+                </div>
+              </div>
+
+              {/* Advanced Skills */}
+              <div className="mb-6">
+                <h5 className="text-md font-semibold mb-3 text-blue-600 dark:text-blue-500">Advanced Level</h5>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {skills
+                    .filter(skill => skill.level === "Advanced")
+                    .map((skill, index) => (
+                      <SkillCard
+                        key={`advanced-${index}`}
+                        skill={skill.name}
+                        level={skill.level}
+                        icon={skill.icon}
+                      />
+                    ))}
+                </div>
+              </div>
+
+              {/* Intermediate Skills */}
+              <div className="mb-6">
+                <h5 className="text-md font-semibold mb-3 text-sky-600 dark:text-sky-500">Intermediate Level</h5>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {skills
+                    .filter(skill => skill.level === "Intermediate")
+                    .map((skill, index) => (
+                      <SkillCard
+                        key={`intermediate-${index}`}
+                        skill={skill.name}
+                        level={skill.level}
+                        icon={skill.icon}
+                      />
+                    ))}
+                </div>
+              </div>
+
+              {/* Beginner Skills - Only show section if there are beginner skills */}
+              {skills.filter(skill => skill.level === "Beginner").length > 0 && (
+                <div className="mb-6">
+                  <h5 className="text-md font-semibold mb-3 text-cyan-600 dark:text-cyan-500">Beginner Level</h5>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {skills
+                      .filter(skill => skill.level === "Beginner")
+                      .map((skill, index) => (
+                        <SkillCard
+                          key={`beginner-${index}`}
+                          skill={skill.name}
+                          level={skill.level}
+                          icon={skill.icon}
+                        />
+                      ))}
+                  </div>
+                </div>
+              )}
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button

@@ -65,15 +65,11 @@ const GitHubStats = () => {
         // Log cache details for debugging
         console.log('Found cached GitHub stats:', parsedStats);
         console.log(`Cache age: ${Math.round((now - timestamp) / 1000 / 60)} minutes old`);
-        
-        // If cache is less than 30 minutes old, use it
+          // If cache is less than 30 minutes old, use it
         if (now - timestamp < 30 * 60 * 1000) {
-          // Make sure to validate the contribution count before using the cache
-          // If the contribution count is less than 105, update it to at least 105
-          if (parsedStats.contributions < 105) {
-            console.log(`Cached contribution count (${parsedStats.contributions}) is too low. Setting to at least 105.`);
-            parsedStats.contributions = 105;
-          }
+          // Allow the cached contribution count to be used as is
+          console.log(`Using cached contribution count: ${parsedStats.contributions}`);
+          
           
           setStats({
             ...parsedStats,
@@ -111,80 +107,19 @@ const GitHubStats = () => {
       // Count recent commits from push events
       const commits = eventsData
         .filter(event => event.type === 'PushEvent')
-        .reduce((acc, event) => acc + event.payload.commits?.length || 0, 0);
-        // Get contribution count 
-      // Note: Direct HTML scraping won't work due to CORS issues
-      // Using a more sophisticated approach with multiple fallbacks
-      let contributions = 0;
-        try {
-        // Try multiple CORS proxies in case one isn't working
-        const corsProxies = [
-          'https://corsproxy.io/?',
-          'https://cors-anywhere.herokuapp.com/',
-          'https://api.allorigins.win/raw?url='
-        ];
-        
-        // Attempt with each proxy
-        for (const corsProxyUrl of corsProxies) {
-          try {
-            console.log(`Trying CORS proxy: ${corsProxyUrl}`);
-            const profileResponse = await fetch(`${corsProxyUrl}https://github.com/${username}`, {
-              headers: {
-                'User-Agent': 'Mozilla/5.0',
-                'Accept': 'text/html',
-                'Cache-Control': 'no-cache'
-              },
-              cache: 'no-cache' // Prevent caching
-            });
-            
-            if (profileResponse.ok) {
-              const html = await profileResponse.text();
-              console.log('Got GitHub profile HTML, searching for contribution count');
-              
-              // Try different regex patterns to find contribution count
-              // GitHub occasionally changes their HTML structure
-              const possiblePatterns = [
-                /(\d+) contributions in the last year/i,
-                /(\d+) contributions in (\d{4})/i,
-                /(\d+)\s*contributions/i,
-                /contributions in the last year[\s\S]*?(\d+) total/i
-              ];
-              
-              for (const pattern of possiblePatterns) {
-                const match = html.match(pattern);
-                if (match && match[1]) {
-                  contributions = parseInt(match[1], 10);
-                  console.log(`Found contributions: ${contributions}`);
-                  break;
-                }
-              }
-              
-              // If we found contributions, break out of the proxy loop
-              if (contributions > 0) {
-                break;
-              }
-            }
-          } catch (proxyError) {
-            console.error(`Error with proxy ${corsProxyUrl}:`, proxyError);
-            // Continue to next proxy
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching contribution count via CORS proxies:', error);
-      }
+        .reduce((acc, event) => acc + event.payload.commits?.length || 0, 0);      // Get contribution count - since CORS proxies tend to fail, we'll use a base estimate
+      // plus any new commits we see from the GitHub API
+      let contributions = 157; // Updated baseline count as of June 2025
       
-      // If contributions is still 0, use known value plus recent commits
-      if (contributions === 0) {
-        console.log('Using fallback contribution count');
-        // Set base value to 105 (known from GitHub profile)
-        // Add any new commits we've detected since the last known count
-        contributions = 105;
-        
-        // If we have a significant number of commits, add them to the base count
-        // Only count commits that might not be included in the known 105 count
-        if (commits > 0) {
-          contributions += commits;
-          console.log(`Adding ${commits} recent commits to base count`);
+      console.log('Using estimated contribution count with commits adjustment');
+      
+      // Add any new commits we've detected to the count for a rough estimate
+      if (commits > 0) {
+        // We'll add half the commits to avoid double-counting (rough estimate)
+        const additionalContributions = Math.floor(commits / 2);
+        if (additionalContributions > 0) {
+          contributions += additionalContributions;
+          console.log(`Adding ${additionalContributions} from recent commits to contribution count`);
         }
       }
         // Calculate forks from repos data
@@ -205,8 +140,7 @@ const GitHubStats = () => {
       try {
         // Store the current contribution value for debugging purposes
         console.log(`Caching GitHub stats. Contributions: ${contributions}`);
-        
-        // Save the data with a timestamp so we can tell when it was last updated
+          // Save the data with a timestamp so we can tell when it was last updated
         const statsData = {
           repos: newStats.repos,
           stars: newStats.stars,
@@ -214,7 +148,7 @@ const GitHubStats = () => {
           forks: newStats.forks,  // Include forks data
           contributions: newStats.contributions,
           timestamp: Date.now(),
-          contributionSource: contributions === 105 ? 'fallback' : 'api'
+          contributionSource: 'estimate' // We're using estimated data now
         };
         
         localStorage.setItem('githubStats', JSON.stringify(statsData));
@@ -329,8 +263,10 @@ const GitHubStats = () => {
                   <div className="h-8 w-8 rounded-full border-2 border-portfolio-blue/30 border-t-portfolio-blue animate-spin" />
                 ) : (
                   <span className="text-2xl font-bold dark:text-white">{stats.contributions}</span>
-                )}
-                <span className="text-sm text-gray-500 dark:text-gray-400">Contributions</span>
+                )}                <div>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">Contributions</span>
+                  <span className="block text-xs text-gray-400 dark:text-gray-500">(estimated)</span>
+                </div>
               </div>
             </CardContent>
           </Card>
