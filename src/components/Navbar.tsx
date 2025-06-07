@@ -12,9 +12,8 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-      
-      // Update active section based on scroll position
-      const sections = ['home', 'projects', 'about', 'contact'];
+        // Update active section based on scroll position
+      const sections = ['home', 'about', 'contact'];
       const sectionElements = sections.map(id => 
         id === 'home' ? document.querySelector('section') : document.querySelector(`#${id}`)
       );
@@ -37,10 +36,8 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
   const navLinks = [
     { name: 'Home', href: '#', id: 'home' },
-    { name: 'Projects', href: '#projects', id: 'projects' },
     { name: 'About', href: '#about', id: 'about' },
     { name: 'Contact', href: '#contact', id: 'contact' }
   ];

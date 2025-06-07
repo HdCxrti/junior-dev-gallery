@@ -50,15 +50,14 @@ const Hero = () => {
               for a strong work ethic and a get-it-done attitude.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button
+            <div className="flex flex-col sm:flex-row gap-4">              <Button
                 className="bg-portfolio-blue hover:bg-portfolio-indigo text-white px-8 py-6 rounded-md transition-transform hover:scale-105 shadow-lg hover:shadow-portfolio-blue/20"
                 size="lg"
                 asChild
               >
-                <a href="#projects" className="flex items-center gap-2">
+                <a href="#about" className="flex items-center gap-2">
                   <Laptop className="w-5 h-5" />
-                  View My Work
+                  View My Skills
                 </a>
               </Button>
 

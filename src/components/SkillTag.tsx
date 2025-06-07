@@ -7,7 +7,7 @@ interface SkillTagProps {
 
 const SkillTag: React.FC<SkillTagProps> = ({ skill, icon }) => {
   return (
-    <div className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200">
+    <div className="flex items-center gap-2 px-4 py-2 rounded-md border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow dark:bg-gray-800 dark:border-gray-700">
       {icon && (
         <img 
           src={icon} 
@@ -16,9 +16,7 @@ const SkillTag: React.FC<SkillTagProps> = ({ skill, icon }) => {
           loading="lazy"
         />
       )}
-      <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-        {skill}
-      </span>
+      <span className="text-gray-800 dark:text-gray-200">{skill}</span>
     </div>
   );
 };
