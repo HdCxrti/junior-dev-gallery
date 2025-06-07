@@ -72,9 +72,7 @@ const Navbar = () => {
               <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-portfolio-blue to-portfolio-indigo transition-all duration-300 ${
                 activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'
               }`}></span>
-            </a>
-          ))}
-          
+            </a>          ))}
           <ThemeToggle />
           
           <Button className="bg-portfolio-blue hover:bg-portfolio-indigo transition-all duration-300 transform hover:scale-105" asChild>
@@ -120,11 +118,32 @@ const Navbar = () => {
               {link.name}
             </a>
           ))}
-          
-          <div className="flex items-center py-4 justify-between border-b border-gray-100 dark:border-gray-800">
+            <div className="flex items-center py-4 justify-between border-b border-gray-100 dark:border-gray-800">
             <span className="text-gray-700 dark:text-gray-200">Theme</span>
-            <ThemeToggle />
+            <div className="flex items-center gap-2">
+              <DirectThemeToggle />
+              <ThemeToggle />
+            </div>
           </div>
+          
+          {/* Theme debugging info in mobile menu - only visible in dev mode */}
+          {import.meta.env.DEV && (
+            <div className="p-3 border border-gray-200 dark:border-gray-700 rounded-md text-xs">
+              <h4 className="font-bold mb-2">Theme Debug Info</h4>
+              <p className="mb-1">HTML class: <span className="text-portfolio-purple">{document.documentElement.classList.contains('dark') ? 'dark' : 'light'}</span></p>
+              <p className="mb-1">Stored theme: <span className="text-portfolio-purple">{localStorage.getItem('theme') || 'not set'}</span></p>
+              <p className="mb-1">System preference: <span className="text-portfolio-purple">{window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'}</span></p>
+              <button 
+                onClick={() => {
+                  document.documentElement.classList.toggle('dark');
+                  document.documentElement.classList.toggle('light');
+                }}
+                className="mt-2 px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded-md text-xs"
+              >
+                Force Toggle Theme Class
+              </button>
+            </div>
+          )}
           
           <Button className="bg-portfolio-blue hover:bg-portfolio-indigo mt-4 w-full py-6" asChild>
             <a href="/resume/Jake_Dutra_Software_Developer_Resume.pdf" target="_blank" rel="noopener noreferrer">

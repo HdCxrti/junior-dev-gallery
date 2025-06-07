@@ -4,6 +4,9 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { ThemeProvider } from "./components/theme-provider";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import { useEffect } from "react";
+// Import theme debugger
+import "@/lib/theme-debugger";
 
 const App = () => {
   // Only use basename for production (GitHub Pages deployment)
