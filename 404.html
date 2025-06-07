@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <script>
+    // Redirect all 404s to the main app, keeping the URL intact for hash-based routing
+    const segmentCount = 1; // This should match the number of segments in your repo name
+    const l = window.location;
+    const repoName = 'junior-dev-gallery'; // Your repo name
+    
+    // Constructing a redirect URL to your main app while preserving hash if present
+    const redirectUrl = l.protocol + '//' + l.hostname + 
+      (l.port ? ':' + l.port : '') + 
+      '/' + repoName + '/' + 
+      (l.hash ? l.hash : '');
+    
+    window.location.href = redirectUrl;
+  </script>
+</head>
+<body>
+  <h1>Redirecting...</h1>
+  <p>If you're not redirected automatically, <a href="/">click here</a>.</p>
+</body>
+</html>
