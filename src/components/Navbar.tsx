@@ -117,11 +117,9 @@ const Navbar = () => {
               <ChevronRight className="h-5 w-5 mr-2 text-portfolio-purple" />
               {link.name}
             </a>
-          ))}
-            <div className="flex items-center py-4 justify-between border-b border-gray-100 dark:border-gray-800">
+          ))}            <div className="flex items-center py-4 justify-between border-b border-gray-100 dark:border-gray-800">
             <span className="text-gray-700 dark:text-gray-200">Theme</span>
             <div className="flex items-center gap-2">
-              <DirectThemeToggle />
               <ThemeToggle />
             </div>
           </div>
