@@ -3,24 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecting...</title>
-  <script>
-    // Redirect all 404s to the main app, keeping the URL intact for hash-based routing
-    const segmentCount = 1; // This should match the number of segments in your repo name
+  <title>Redirecting...</title>  <script>
+    // Redirect all 404s to the main app with proper hash-based routing
     const l = window.location;
     const repoName = 'junior-dev-gallery'; // Your repo name
     
-    // Constructing a redirect URL to your main app while preserving hash if present
+    // Extract the path part after the repo name to convert to hash route
+    const pathSegments = l.pathname.split('/').filter(segment => segment !== '' && segment !== repoName);
+    const path = pathSegments.length > 0 ? '/' + pathSegments.join('/') : '';
+    
+    // Construct redirect URL, maintaining any existing query parameters
     const redirectUrl = l.protocol + '//' + l.hostname + 
       (l.port ? ':' + l.port : '') + 
-      '/' + repoName + '/' + 
+      '/' + repoName + '/#' + path +
+      (l.search ? l.search : '') +
       (l.hash ? l.hash : '');
+    
+    // Debug information (will be logged to console)
+    console.log('404 redirect:', {
+      originalPath: l.pathname,
+      redirectingTo: redirectUrl
+    });
     
     window.location.href = redirectUrl;
   </script>
 </head>
 <body>
   <h1>Redirecting...</h1>
-  <p>If you're not redirected automatically, <a href="/">click here</a>.</p>
+  <p>If you're not redirected automatically, <a href="/junior-dev-gallery/">click here</a>.</p>
 </body>
 </html>
