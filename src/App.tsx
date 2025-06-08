@@ -9,12 +9,18 @@ import { useEffect } from "react";
 import "@/lib/theme-debugger";
 
 const App = () => {
-  // Only use basename for production (GitHub Pages deployment)
-  const basename = import.meta.env.MODE === 'production' ? '/junior-dev-gallery' : '/';
+  // HashRouter doesn't need basename - it uses hash-based routing
+  // The base path for assets is handled by Vite's base config
+  
+  useEffect(() => {
+    // Log environment info on startup for debugging
+    console.log('Environment:', import.meta.env.MODE);
+    console.log('Base path in Vite config:', import.meta.env.BASE_URL);
+  }, []);
   
   return (
     <ThemeProvider defaultTheme="system" enableSystem>
-      <HashRouter basename={basename}>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="*" element={<NotFound />} />
